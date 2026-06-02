@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-100 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-600/50 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-500/70;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary-500/30 text-white;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 rounded-sm;
+  }
+}
+
+@layer components {
+  /* ─── Buttons ─────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           font-display font-medium text-sm rounded-lg
+           transition-all duration-200 ease-out
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-900
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none
+           active:scale-[0.97];
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-600 to-primary-500 text-white
+           hover:from-primary-500 hover:to-primary-400
+           shadow-lg shadow-primary-600/20 hover:shadow-glow-primary;
+  }
+  .btn-secondary {
+    @apply btn bg-surface-800 text-surface-200 
+           hover:bg-surface-700 hover:text-surface-100
+           border border-surface-700/60 hover:border-surface-600;
+  }
+  .btn-danger {
+    @apply btn bg-red-600/90 text-white hover:bg-red-500
+           shadow-lg shadow-red-700/20;
+  }
+  .btn-success {
+    @apply btn bg-emerald-600/90 text-white hover:bg-emerald-500;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-surface-400 hover:bg-surface-800/60 hover:text-surface-200;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-md;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  /* ─── Cards ───────────────────────────────── */
+  .card {
+    @apply bg-surface-850 border border-surface-700/40 rounded-2xl p-6
+           shadow-card;
+  }
+  .card-hover {
+    @apply card cursor-pointer
+           hover:border-primary-500/20 hover:shadow-card-hover
+           hover:bg-surface-800
+           transition-all duration-300 ease-out;
+  }
+
+  /* ─── Inputs ──────────────────────────────── */
+  .input {
+    @apply w-full bg-surface-900/80 border border-surface-700/50 rounded-xl px-4 py-2.5
+           text-surface-100 placeholder-surface-500 text-sm
+           focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-600
+           transition-all duration-200;
+  }
+  .input-error {
+    @apply border-red-500/60 focus:ring-red-500/40 focus:border-red-500;
+  }
+
+  /* ─── Labels ──────────────────────────────── */
+  .label {
+    @apply block text-sm font-medium text-surface-300 mb-1.5 font-display;
+  }
+
+  /* ─── Badges ──────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold font-display tracking-wide;
+  }
+  .badge-ac      { @apply badge bg-verdict-ac/15 text-verdict-ac; }
+  .badge-wa      { @apply badge bg-verdict-wa/15 text-verdict-wa; }
+  .badge-tle     { @apply badge bg-verdict-tle/15 text-verdict-tle; }
+  .badge-re      { @apply badge bg-verdict-re/15 text-verdict-re; }
+  .badge-ce      { @apply badge bg-verdict-ce/15 text-verdict-ce; }
+  .badge-pending { @apply badge bg-verdict-pending/15 text-verdict-pending; }
+
+  .badge-easy   { @apply badge bg-emerald-400/10 text-emerald-400 border border-emerald-400/20; }
+  .badge-medium { @apply badge bg-amber-400/10 text-amber-400 border border-amber-400/20; }
+  .badge-hard   { @apply badge bg-red-400/10 text-red-400 border border-red-400/20; }
+
+  /* ─── Tables ──────────────────────────────── */
+  .table-container {
+    @apply overflow-x-auto rounded-2xl border border-surface-700/40 bg-surface-850;
+  }
+  .table {
+    @apply w-full text-sm text-left;
+  }
+  .table thead {
+    @apply bg-surface-900/60 text-surface-400 text-xs uppercase tracking-wider font-display;
+  }
+  .table th {
+    @apply px-5 py-3.5 font-semibold;
+  }
+  .table td {
+    @apply px-5 py-3.5 border-t border-surface-700/20;
+  }
+  .table tbody tr {
+    @apply hover:bg-primary-500/[0.04] transition-colors duration-150;
+  }
+  .table tbody tr:nth-child(even) {
+    @apply bg-surface-900/20;
+  }
+
+  /* ─── Glass ───────────────────────────────── */
+  .glass {
+    @apply bg-surface-850/70 backdrop-blur-2xl border border-surface-700/40;
+  }
+
+  /* ─── Geometric Auth Background ───────────── */
+  .auth-bg {
+    @apply relative min-h-screen overflow-hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 40%, rgba(8, 190, 168, 0.08), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 60%, rgba(249, 140, 7, 0.06), transparent),
+      radial-gradient(ellipse 120% 80% at 50% 100%, rgba(10, 25, 41, 1), transparent),
+      #0a1929;
+  }
+  .auth-bg::before {
+    content: '';
+    @apply absolute inset-0 bg-grid-pattern opacity-40;
+  }
+
+  /* ─── Screen reader only ──────────────────── */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+}
