@@ -47,3 +47,6 @@ Thumbs.db
 
 # Temp files from judge
 temp_submissions/
+.agents/
+skills-lock.json
+manual_de_usuario.md
