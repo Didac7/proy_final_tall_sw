@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: icpc_uagrm_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-icpc_uagrm}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-diego}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - icpc_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: icpc_uagrm_backend
+    restart: always
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-uagrm-icpc-platform-dev-key-2024}
+      - DEBUG=${DEBUG:-True}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,backend}
+      - DB_NAME=${DB_NAME:-icpc_uagrm}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-diego}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost,http://127.0.0.1}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - db
+    volumes:
+      - django_static:/app/staticfiles
+      - django_media:/app/media
+    networks:
+      - icpc_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: icpc_uagrm_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - django_static:/app/staticfiles:ro
+      - django_media:/app/media:ro
+    networks:
+      - icpc_network
+
+volumes:
+  postgres_data:
+  django_static:
+  django_media:
+
+networks:
+  icpc_network:
+    driver: bridge

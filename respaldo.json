@@ -1,0 +1,2206 @@
+[
+{
+    "model": "sessions.session",
+    "pk": "p4e49uoyknivzfz7ypx8wxh818g3i8na",
+    "fields": {
+        "session_data": ".eJxVjDkOwjAUBe_iGll_8RIo6XOGyMsXDiBbipMKcXeIlALaNzPvpaawrWXauizTnNVFoTr9bjGkh9Qd5Huot6ZTq-syR70r-qBdjy3L83q4fwcl9PKtkwgni84YCgktSAbD3rEYS-STH5jOUQaxDogtIAAaRHSOiMELqPcHuOo1yg:1wTA7n:C22Q-Ku5FFhhX0c3rGQVf1SXWvier_rRW2CI6HiRkYA",
+        "expire_date": "2026-06-13T03:12:35.039Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 1,
+    "fields": {
+        "token": 6,
+        "blacklisted_at": "2026-05-29T03:17:44.584Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 2,
+    "fields": {
+        "token": 8,
+        "blacklisted_at": "2026-05-30T03:50:34.123Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 3,
+    "fields": {
+        "token": 10,
+        "blacklisted_at": "2026-05-30T04:24:12.117Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 4,
+    "fields": {
+        "token": 11,
+        "blacklisted_at": "2026-05-30T22:58:30.147Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 5,
+    "fields": {
+        "token": 12,
+        "blacklisted_at": "2026-05-30T23:02:06.916Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 6,
+    "fields": {
+        "token": 13,
+        "blacklisted_at": "2026-05-30T23:03:19.509Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 7,
+    "fields": {
+        "token": 14,
+        "blacklisted_at": "2026-05-30T23:08:11.285Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 8,
+    "fields": {
+        "token": 15,
+        "blacklisted_at": "2026-05-30T23:18:49.410Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 9,
+    "fields": {
+        "token": 16,
+        "blacklisted_at": "2026-05-30T23:38:45.898Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 10,
+    "fields": {
+        "token": 17,
+        "blacklisted_at": "2026-05-30T23:40:51.437Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 11,
+    "fields": {
+        "token": 18,
+        "blacklisted_at": "2026-06-02T19:08:45.402Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 13,
+    "fields": {
+        "token": 22,
+        "blacklisted_at": "2026-06-02T19:14:18.256Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 14,
+    "fields": {
+        "token": 23,
+        "blacklisted_at": "2026-06-02T19:17:57.785Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 15,
+    "fields": {
+        "token": 25,
+        "blacklisted_at": "2026-06-04T18:57:46.820Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 16,
+    "fields": {
+        "token": 26,
+        "blacklisted_at": "2026-06-04T19:30:28.712Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 17,
+    "fields": {
+        "token": 27,
+        "blacklisted_at": "2026-06-04T19:48:18.016Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 18,
+    "fields": {
+        "token": 28,
+        "blacklisted_at": "2026-06-04T19:49:22.906Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 20,
+    "fields": {
+        "token": 30,
+        "blacklisted_at": "2026-06-18T23:50:18.310Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 22,
+    "fields": {
+        "token": 34,
+        "blacklisted_at": "2026-06-18T23:50:27.233Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 24,
+    "fields": {
+        "token": 35,
+        "blacklisted_at": "2026-06-22T21:49:20.614Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 29,
+    "fields": {
+        "token": 42,
+        "blacklisted_at": "2026-06-22T21:52:32.115Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 30,
+    "fields": {
+        "token": 43,
+        "blacklisted_at": "2026-06-22T21:52:59.275Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 31,
+    "fields": {
+        "token": 44,
+        "blacklisted_at": "2026-06-22T22:09:30.399Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 32,
+    "fields": {
+        "token": 45,
+        "blacklisted_at": "2026-06-22T22:12:04.601Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 33,
+    "fields": {
+        "token": 46,
+        "blacklisted_at": "2026-06-22T23:07:50.493Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 34,
+    "fields": {
+        "token": 47,
+        "blacklisted_at": "2026-06-22T23:08:32.025Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 39,
+    "fields": {
+        "token": 48,
+        "blacklisted_at": "2026-06-23T02:24:55.648Z"
+    }
+},
+{
+    "model": "token_blacklist.blacklistedtoken",
+    "pk": 41,
+    "fields": {
+        "token": 55,
+        "blacklisted_at": "2026-06-23T04:25:04.620Z"
+    }
+},
+{
+    "model": "users.role",
+    "pk": 1,
+    "fields": {
+        "name": "admin",
+        "description": "Administrador del sistema con acceso total.",
+        "is_active": true,
+        "created_at": "2026-05-28T16:46:44.756Z",
+        "updated_at": "2026-05-28T16:46:44.756Z"
+    }
+},
+{
+    "model": "users.role",
+    "pk": 2,
+    "fields": {
+        "name": "coach",
+        "description": "Coach/entrenador que gestiona equipos y competencias.",
+        "is_active": true,
+        "created_at": "2026-05-28T16:46:44.760Z",
+        "updated_at": "2026-05-28T16:46:44.760Z"
+    }
+},
+{
+    "model": "users.role",
+    "pk": 3,
+    "fields": {
+        "name": "student",
+        "description": "Estudiante participante en competencias y entrenamientos.",
+        "is_active": true,
+        "created_at": "2026-05-28T16:46:44.762Z",
+        "updated_at": "2026-05-28T16:46:44.762Z"
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$GLOSy0ogKQ1LWSHJj2kyaW$hM4B+gVEjAmoc9Y5aty6RI7uFvTAzus6+bsEcmuKYHc=",
+        "last_login": "2026-05-30T03:12:35.033Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Administrador",
+        "last_name": "ICPC",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-05-28T16:46:44.768Z",
+        "email": "admin@uagrm.edu.bo",
+        "role": 1,
+        "university": "UAGRM",
+        "faculty": "FICCT",
+        "bio": "",
+        "created_at": "2026-05-28T16:46:45.137Z",
+        "updated_at": "2026-06-22T21:52:05.116Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$02wCI3S0cpFKvd8Y8LzOLL$Of+Jn4Icu6eG63OjHX+OQfPO0bsgenGCH+qnqb+iHTs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "estudiante1",
+        "first_name": "Carlos",
+        "last_name": "Rojas",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-29T03:08:42.484Z",
+        "email": "est1@uagrm.edu.bo",
+        "role": 3,
+        "university": "UAGRM",
+        "faculty": "FICCT",
+        "bio": "",
+        "created_at": "2026-05-29T03:08:43.398Z",
+        "updated_at": "2026-06-22T21:52:06.454Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$cN6HZKwo4csEdBdYxZcUEC$LKqWnaS4FN5jA5BP+gm1BGe6N9DmMMxxmIS95OF+6kw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "entrenador1",
+        "first_name": "Julio",
+        "last_name": "Paz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-30T23:03:10.864Z",
+        "email": "julio123@gmail.com",
+        "role": 2,
+        "university": "UAGRM",
+        "faculty": "FICCT",
+        "bio": "",
+        "created_at": "2026-05-30T23:03:11.482Z",
+        "updated_at": "2026-06-22T21:52:05.815Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 1,
+    "fields": {
+        "title": "Suma de dos numeros",
+        "description": "Dados dos numeros enteros A y B, calcula su suma.",
+        "input_format": "Una linea con dos enteros A y B separados por espacio (1 <= A, B <= 10^9).",
+        "output_format": "Un solo entero: la suma A + B.",
+        "sample_input": "3 5",
+        "sample_output": "8",
+        "difficulty": "easy",
+        "time_limit_ms": 1000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "matematica,basico",
+        "created_at": "2026-05-29T03:09:38.657Z",
+        "updated_at": "2026-05-29T03:09:38.657Z"
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 2,
+    "fields": {
+        "title": "Numero par o impar",
+        "description": "Dado un numero entero N, determina si es par o impar.",
+        "input_format": "Un solo entero N (-10^9 <= N <= 10^9).",
+        "output_format": "Imprime \"par\" si N es par, o \"impar\" si N es impar.",
+        "sample_input": "4",
+        "sample_output": "par",
+        "difficulty": "easy",
+        "time_limit_ms": 1000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "matematica,condicional",
+        "created_at": "2026-05-29T03:09:38.694Z",
+        "updated_at": "2026-05-29T03:09:38.695Z"
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 3,
+    "fields": {
+        "title": "Fibonacci N-esimo",
+        "description": "Dado un entero N, calcula el N-esimo termino de la secuencia de Fibonacci.\n\nLa secuencia de Fibonacci se define como:\nF(0) = 0\nF(1) = 1\nF(n) = F(n-1) + F(n-2) para n >= 2",
+        "input_format": "Un solo entero N (0 <= N <= 40).",
+        "output_format": "Un solo entero: el N-esimo numero de Fibonacci.",
+        "sample_input": "6",
+        "sample_output": "8",
+        "difficulty": "medium",
+        "time_limit_ms": 2000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "dinamica,recursion,matematica",
+        "created_at": "2026-05-29T03:09:38.711Z",
+        "updated_at": "2026-05-29T03:09:38.711Z"
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 4,
+    "fields": {
+        "title": "Maximo Comun Divisor",
+        "description": "Dados dos enteros positivos A y B, calcula su Maximo Comun Divisor (MCD) usando el algoritmo de Euclides.",
+        "input_format": "Una linea con dos enteros positivos A y B (1 <= A, B <= 10^9).",
+        "output_format": "Un solo entero: el MCD de A y B.",
+        "sample_input": "12 8",
+        "sample_output": "4",
+        "difficulty": "medium",
+        "time_limit_ms": 1000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "matematica,euclides,numero-teoria",
+        "created_at": "2026-05-29T03:09:38.726Z",
+        "updated_at": "2026-05-29T03:09:38.726Z"
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 5,
+    "fields": {
+        "title": "Ordenar arreglo",
+        "description": "Dado un arreglo de N enteros, ordenalos de menor a mayor e imprimalos separados por espacio.",
+        "input_format": "La primera linea contiene un entero N (1 <= N <= 1000).\nLa segunda linea contiene N enteros separados por espacio.",
+        "output_format": "Una linea con los N enteros ordenados de menor a mayor, separados por espacio.",
+        "sample_input": "5\n3 1 4 1 5",
+        "sample_output": "1 1 3 4 5",
+        "difficulty": "hard",
+        "time_limit_ms": 2000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "ordenamiento,arreglos",
+        "created_at": "2026-05-29T03:09:38.738Z",
+        "updated_at": "2026-05-29T03:09:38.738Z"
+    }
+},
+{
+    "model": "problems.problem",
+    "pk": 6,
+    "fields": {
+        "title": "Doble del n·mero",
+        "description": "Dado un n·mero entero N, imprime su doble (N * 2).",
+        "input_format": "Un ·nico n·mero entero N en la entrada estßndar.",
+        "output_format": "Un entero que represente el valor de N multiplicado por 2.",
+        "sample_input": "5",
+        "sample_output": "10",
+        "difficulty": "easy",
+        "time_limit_ms": 1000,
+        "memory_limit_kb": 262144,
+        "author": [
+            "admin"
+        ],
+        "is_public": true,
+        "is_active": true,
+        "tags": "",
+        "created_at": "2026-05-30T23:05:59.497Z",
+        "updated_at": "2026-05-30T23:05:59.497Z"
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 1,
+    "fields": {
+        "problem": 1,
+        "input_data": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 2,
+    "fields": {
+        "problem": 1,
+        "input_data": "0 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "order": 1
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 3,
+    "fields": {
+        "problem": 1,
+        "input_data": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "order": 2
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 4,
+    "fields": {
+        "problem": 1,
+        "input_data": "-5 10",
+        "expected_output": "5",
+        "is_sample": false,
+        "order": 3
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 5,
+    "fields": {
+        "problem": 2,
+        "input_data": "4",
+        "expected_output": "par",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 6,
+    "fields": {
+        "problem": 2,
+        "input_data": "7",
+        "expected_output": "impar",
+        "is_sample": true,
+        "order": 1
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 7,
+    "fields": {
+        "problem": 2,
+        "input_data": "0",
+        "expected_output": "par",
+        "is_sample": false,
+        "order": 2
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 8,
+    "fields": {
+        "problem": 2,
+        "input_data": "-3",
+        "expected_output": "impar",
+        "is_sample": false,
+        "order": 3
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 9,
+    "fields": {
+        "problem": 3,
+        "input_data": "6",
+        "expected_output": "8",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 10,
+    "fields": {
+        "problem": 3,
+        "input_data": "0",
+        "expected_output": "0",
+        "is_sample": false,
+        "order": 1
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 11,
+    "fields": {
+        "problem": 3,
+        "input_data": "10",
+        "expected_output": "55",
+        "is_sample": false,
+        "order": 2
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 12,
+    "fields": {
+        "problem": 3,
+        "input_data": "20",
+        "expected_output": "6765",
+        "is_sample": false,
+        "order": 3
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 13,
+    "fields": {
+        "problem": 4,
+        "input_data": "12 8",
+        "expected_output": "4",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 14,
+    "fields": {
+        "problem": 4,
+        "input_data": "100 25",
+        "expected_output": "25",
+        "is_sample": false,
+        "order": 1
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 15,
+    "fields": {
+        "problem": 4,
+        "input_data": "7 13",
+        "expected_output": "1",
+        "is_sample": false,
+        "order": 2
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 16,
+    "fields": {
+        "problem": 5,
+        "input_data": "5\n3 1 4 1 5",
+        "expected_output": "1 1 3 4 5",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 17,
+    "fields": {
+        "problem": 5,
+        "input_data": "1\n42",
+        "expected_output": "42",
+        "is_sample": false,
+        "order": 1
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 18,
+    "fields": {
+        "problem": 5,
+        "input_data": "3\n-1 0 1",
+        "expected_output": "-1 0 1",
+        "is_sample": false,
+        "order": 2
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 19,
+    "fields": {
+        "problem": 6,
+        "input_data": "5",
+        "expected_output": "10",
+        "is_sample": true,
+        "order": 0
+    }
+},
+{
+    "model": "problems.testcase",
+    "pk": 20,
+    "fields": {
+        "problem": 6,
+        "input_data": "100",
+        "expected_output": "200",
+        "is_sample": false,
+        "order": 0
+    }
+},
+{
+    "model": "contests.contest",
+    "pk": 1,
+    "fields": {
+        "title": "ICPC UAGRM - Clasificatoria 2026",
+        "description": "Competencia clasificatoria para seleccionar equipos que representaran a la UAGRM en la ICPC Regional.",
+        "start_time": "2026-05-29T02:09:38.749Z",
+        "end_time": "2026-05-29T07:09:38.749Z",
+        "status": "finished",
+        "created_by": [
+            "admin"
+        ],
+        "is_public": true,
+        "scoring_type": "icpc",
+        "penalty_time": 20,
+        "created_at": "2026-05-29T03:09:38.754Z",
+        "updated_at": "2026-05-29T03:09:38.754Z"
+    }
+},
+{
+    "model": "contests.contest",
+    "pk": 2,
+    "fields": {
+        "title": "Torneo Relampago UAGRM",
+        "description": "Torneo corto para evaluar habilidades de l≤gica en programaci≤n.",
+        "start_time": "2026-05-30T23:16:00Z",
+        "end_time": "2026-05-30T23:50:00Z",
+        "status": "finished",
+        "created_by": [
+            "entrenador1"
+        ],
+        "is_public": true,
+        "scoring_type": "icpc",
+        "penalty_time": 20,
+        "created_at": "2026-05-30T23:17:54.961Z",
+        "updated_at": "2026-05-30T23:17:54.961Z"
+    }
+},
+{
+    "model": "contests.contest",
+    "pk": 3,
+    "fields": {
+        "title": "Competencia de prueba 1",
+        "description": "",
+        "start_time": "2026-06-22T23:09:00Z",
+        "end_time": "2026-06-22T23:12:00Z",
+        "status": "finished",
+        "created_by": [
+            "admin"
+        ],
+        "is_public": true,
+        "scoring_type": "icpc",
+        "penalty_time": 20,
+        "created_at": "2026-06-22T22:11:27.443Z",
+        "updated_at": "2026-06-22T23:08:29.054Z"
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 1,
+    "fields": {
+        "contest": 1,
+        "problem": 1,
+        "label": "A",
+        "order": 0
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 2,
+    "fields": {
+        "contest": 1,
+        "problem": 2,
+        "label": "B",
+        "order": 1
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 3,
+    "fields": {
+        "contest": 1,
+        "problem": 3,
+        "label": "C",
+        "order": 2
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 4,
+    "fields": {
+        "contest": 1,
+        "problem": 4,
+        "label": "D",
+        "order": 3
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 5,
+    "fields": {
+        "contest": 1,
+        "problem": 5,
+        "label": "E",
+        "order": 4
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 6,
+    "fields": {
+        "contest": 2,
+        "problem": 6,
+        "label": "A",
+        "order": 0
+    }
+},
+{
+    "model": "contests.contestproblem",
+    "pk": 7,
+    "fields": {
+        "contest": 3,
+        "problem": 6,
+        "label": "A",
+        "order": 0
+    }
+},
+{
+    "model": "contests.contestparticipant",
+    "pk": 1,
+    "fields": {
+        "contest": 2,
+        "user": [
+            "estudiante1"
+        ],
+        "team": null,
+        "registered_at": "2026-05-30T23:20:50.046Z"
+    }
+},
+{
+    "model": "contests.contestparticipant",
+    "pk": 2,
+    "fields": {
+        "contest": 3,
+        "user": [
+            "estudiante1"
+        ],
+        "team": null,
+        "registered_at": "2026-06-22T22:12:25.694Z"
+    }
+},
+{
+    "model": "contests.ranking",
+    "pk": 1,
+    "fields": {
+        "contest": 2,
+        "user": [
+            "estudiante1"
+        ],
+        "team": null,
+        "solved_count": 0,
+        "total_penalty": 0,
+        "score": 0,
+        "rank_position": 0,
+        "last_accepted_at": null
+    }
+},
+{
+    "model": "contests.ranking",
+    "pk": 2,
+    "fields": {
+        "contest": 3,
+        "user": [
+            "estudiante1"
+        ],
+        "team": null,
+        "solved_count": 1,
+        "total_penalty": 21,
+        "score": 0,
+        "rank_position": 1,
+        "last_accepted_at": "2026-06-22T23:10:08.581Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 1,
+        "contest": null,
+        "language": "python",
+        "source_code": "a, b = map(int, input().split())\nprint(a + b)",
+        "verdict": "AC",
+        "execution_time_ms": 120,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "",
+        "test_cases_passed": 4,
+        "total_test_cases": 4,
+        "submitted_at": "2026-05-29T03:10:11.374Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 1,
+        "contest": null,
+        "language": "python",
+        "source_code": "a, b = map(int, input().split())\nprint(a * b)",
+        "verdict": "WA",
+        "execution_time_ms": 93,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n8\n\nObtenido:\n15",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 4,
+        "submitted_at": "2026-05-29T03:10:37.558Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 2,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Leer el n·mero entero\nN = int(input())\n\n# Verificar si es par o impar\nif N % 2 == 0:\n    print(\"par\")\nelse:\n    print(\"impar\")",
+        "verdict": "AC",
+        "execution_time_ms": 136,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "",
+        "test_cases_passed": 4,
+        "total_test_cases": 4,
+        "submitted_at": "2026-05-29T03:16:47.439Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 2,
+        "contest": null,
+        "language": "python",
+        "source_code": "N = int(input())\n\nif N % 2 == 1:\n    print(\"par\")\nelse:\n    print(\"impar\")",
+        "verdict": "WA",
+        "execution_time_ms": 116,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\npar\n\nObtenido:\nimpar",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 4,
+        "submitted_at": "2026-05-29T03:17:29.955Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "python",
+        "source_code": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}",
+        "verdict": "RE",
+        "execution_time_ms": 187,
+        "memory_used_kb": 0,
+        "error_message": "  File \"C:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_ku3nqqrr\\solution.py\", line 1\n    import java.util.*;\n                     ^\nSyntaxError: invalid syntax\n",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:50:14.033Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\n\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}",
+        "verdict": "RE",
+        "execution_time_ms": 145,
+        "memory_used_kb": 0,
+        "error_message": "  File \"C:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_sibqyzjd\\solution.py\", line 5\n    import java.util.*;\n                     ^\nSyntaxError: invalid syntax\n",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:50:28.163Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "java",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\n\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}",
+        "verdict": "CE",
+        "execution_time_ms": 0,
+        "memory_used_kb": 0,
+        "error_message": "C:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_fl_u5ass\\Main.java:1: error: illegal character: '#'\n# Escribe tu soluci≤n aquφ\n^\nC:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_fl_u5ass\\Main.java:1: error: class, interface, enum, or record expected\n# Escribe tu soluci≤n aquφ\n          ^\n2 errors\n",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:50:49.838Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\nn = int(input())\narr = list(map(int, input().split()))\n\narr.sort()\n\nprint(*arr)",
+        "verdict": "AC",
+        "execution_time_ms": 82,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "",
+        "test_cases_passed": 3,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:51:26.639Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "java",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}\ninput = sys.stdin.readline",
+        "verdict": "CE",
+        "execution_time_ms": 0,
+        "memory_used_kb": 0,
+        "error_message": "C:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_x48y9f7p\\Main.java:1: error: illegal character: '#'\n# Escribe tu soluci≤n aquφ\n^\nC:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_x48y9f7p\\Main.java:1: error: class, interface, enum, or record expected\n# Escribe tu soluci≤n aquφ\n          ^\nC:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_x48y9f7p\\Main.java:24: error: class, interface, enum, or record expected\ninput = sys.stdin.readline\n^\n3 errors\n",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:51:55.448Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "java",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}",
+        "verdict": "CE",
+        "execution_time_ms": 0,
+        "memory_used_kb": 0,
+        "error_message": "C:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_8zzw8et1\\Main.java:1: error: illegal character: '#'\n# Escribe tu soluci≤n aquφ\n^\nC:\\Users\\HP\\Documents\\10mo semestre\\taller de grado 1\\proy_taller_final\\backend\\temp_submissions\\judge_8zzw8et1\\Main.java:1: error: class, interface, enum, or record expected\n# Escribe tu soluci≤n aquφ\n          ^\n2 errors\n",
+        "ai_feedback": "",
+        "test_cases_passed": 0,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:52:47.898Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "problem": 5,
+        "contest": null,
+        "language": "java",
+        "source_code": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int N = sc.nextInt();\n        int[] arr = new int[N];\n\n        for (int i = 0; i < N; i++) {\n            arr[i] = sc.nextInt();\n        }\n\n        Arrays.sort(arr);\n\n        for (int i = 0; i < N; i++) {\n            if (i > 0) System.out.print(\" \");\n            System.out.print(arr[i]);\n        }\n    }\n}",
+        "verdict": "AC",
+        "execution_time_ms": 408,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "",
+        "test_cases_passed": 3,
+        "total_test_cases": 3,
+        "submitted_at": "2026-05-30T02:54:25.580Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\n\nn = int(input())\nprint(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 57,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:25:39.921Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "n = int(input())\nprint(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 56,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:25:45.167Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\nn = int(input())\nprint(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 54,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:26:56.610Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 15,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "n = int(input())\nprint(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 61,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:27:01.892Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 16,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\n\ndata = sys.stdin.read().strip()\n\nif data:\n    n = int(data)\n    print(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 62,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:27:54.196Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 17,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\n# Leer entrada estßndar\ndata = sys.stdin.read().strip()\nif data:\n    n = int(data)\n    # Imprimir el doble\n    print(n * 2)",
+        "verdict": "WA",
+        "execution_time_ms": 58,
+        "memory_used_kb": 0,
+        "error_message": "Esperado:\n2000\n\nObtenido:\n200",
+        "ai_feedback": "",
+        "test_cases_passed": 1,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:28:12.291Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 18,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\n# Leer entrada estßndar\ndata = sys.stdin.read().strip()\nif data:\n    n = int(data)\n    # Imprimir el doble\n    print(n * 2)",
+        "verdict": "AC",
+        "execution_time_ms": 69,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "",
+        "test_cases_passed": 2,
+        "total_test_cases": 2,
+        "submitted_at": "2026-05-30T23:31:02.976Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 19,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\nline = sys.stdin.readline().strip()\nif line:\n    n = int(line)\n    print(n * 2)",
+        "verdict": "RE",
+        "execution_time_ms": 0,
+        "memory_used_kb": 0,
+        "error_message": "Error en la llamada a la API de Gemini: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+        "ai_feedback": "Ocurri≤ un error inesperado al intentar evaluar la soluci≤n con la Inteligencia Artificial. Por favor intenta de nuevo.",
+        "test_cases_passed": 0,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-22T22:54:02.617Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 20,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\nline = sys.stdin.readline().strip()\nif line:\n    n = int(line)\n    print(n * 3)",
+        "verdict": "WA",
+        "execution_time_ms": 1,
+        "memory_used_kb": 0,
+        "error_message": "La salida para la entrada '5' fue '15', pero se esperaba '10'. La salida para la entrada '100' fue '300', pero se esperaba '200'.",
+        "ai_feedback": "Tu c≤digo estß muy cerca de la soluci≤n correcta, pero hay un peque±o detalle que debes revisar. El problema pide que imprimas el *doble* del n·mero N, lo que significa N multiplicado por 2. Sin embargo, en tu c≤digo estßs multiplicando N por 3. Revisa cuidadosamente la operaci≤n matemßtica que realizas para asegurarte de que coincide con lo que el problema solicita. Es fundamental leer el enunciado con atenci≤n para identificar la operaci≤n exacta requerida.",
+        "test_cases_passed": 0,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-22T23:03:15.155Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 21,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": 3,
+        "language": "python",
+        "source_code": "import sys\nline = sys.stdin.readline().strip()\nif line:\n    n = int(line)\n    print(n * 3)  # <-- Error intencional",
+        "verdict": "WA",
+        "execution_time_ms": 1,
+        "memory_used_kb": 0,
+        "error_message": "Wrong Answer: La salida esperada era '10' pero tu programa produjo '15' para la entrada '5'.",
+        "ai_feedback": "Tu c≤digo no produjo la salida esperada para los casos de prueba. El problema te pide que imprimas el doble del n·mero de entrada (N * 2), pero tu implementaci≤n estß multiplicando el n·mero por 3 (N * 3). Es crucial leer con mucha atenci≤n el enunciado del problema y asegurarte de que cada operaci≤n en tu c≤digo se alinee exactamente con lo que se solicita. Un peque±o error en una constante puede llevar a un veredicto de 'Wrong Answer'. Revisa la lφnea donde realizas la operaci≤n matemßtica.",
+        "test_cases_passed": 0,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-22T23:09:19.171Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 22,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": 3,
+        "language": "python",
+        "source_code": "import sys\nline = sys.stdin.readline().strip()\nif line:\n    n = int(line)\n    print(n * 2)  # <-- Error intencional",
+        "verdict": "AC",
+        "execution_time_ms": 1,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "íExcelente trabajo! Tu c≤digo resuelve correctamente el problema \"Doble del n·mero\". Has implementado la l≤gica de forma directa y eficiente, leyendo la entrada, convirtiΘndola a entero y multiplicßndola por dos para luego imprimir el resultado. La complejidad de tu soluci≤n es O(1), lo cual es ≤ptimo para este tipo de problema. Sigue asφ.",
+        "test_cases_passed": 2,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-22T23:10:08.581Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 23,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "# Escribe tu soluci≤n aquφ\nimport sys\ninput = sys.stdin.readline\n\nfsfs",
+        "verdict": "RE",
+        "execution_time_ms": 1,
+        "memory_used_kb": 0,
+        "error_message": "NameError: name 'fsfs' is not defined",
+        "ai_feedback": "Tu programa no llega a procesar la entrada porque intenta ejecutar una lφnea con un identificador suelto: 'fsfs'. En Python, eso provoca una excepci≤n NameError al no existir ninguna variable o funci≤n con ese nombre. Por eso falla antes de leer N o imprimir su doble. Para este problema, la l≤gica requerida es muy simple: leer un entero, calcular su doble y mostrarlo. Revisa que no queden palabras de prueba, variables sin definir o lφneas sueltas en el c≤digo antes de enviarlo.",
+        "test_cases_passed": 0,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-23T04:25:51.815Z"
+    }
+},
+{
+    "model": "submissions.submission",
+    "pk": 24,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "problem": 6,
+        "contest": null,
+        "language": "python",
+        "source_code": "import sys\n\n# Lee una lφnea de la entrada estßndar\nline = sys.stdin.readline().strip()\n\nif line:\n    # Convierte a entero y calcula el doble\n    n = int(line)\n    print(n * 2)",
+        "verdict": "AC",
+        "execution_time_ms": 1,
+        "memory_used_kb": 0,
+        "error_message": "",
+        "ai_feedback": "Tu programa es correcto y eficiente para este problema. Lee un entero, lo convierte adecuadamente y muestra su doble. Pasa los casos oficiales y su complejidad es O(1), por lo que estß muy por debajo del lφmite de tiempo. Buen trabajo.",
+        "test_cases_passed": 2,
+        "total_test_cases": 2,
+        "submitted_at": "2026-06-23T04:27:10.808Z"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 1,
+    "fields": {
+        "name": "ByteBusters UAGRM",
+        "coach": [
+            "admin"
+        ],
+        "description": "Equipo oficial de programacion competitiva de la UAGRM.",
+        "is_active": true,
+        "created_at": "2026-05-29T03:09:38.799Z",
+        "updated_at": "2026-05-29T03:09:38.799Z"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 2,
+    "fields": {
+        "name": "Los Programadores FICCT",
+        "coach": [
+            "entrenador1"
+        ],
+        "description": "",
+        "is_active": true,
+        "created_at": "2026-05-30T23:12:37.747Z",
+        "updated_at": "2026-05-30T23:12:37.747Z"
+    }
+},
+{
+    "model": "teams.teammember",
+    "pk": 1,
+    "fields": {
+        "team": 2,
+        "user": [
+            "estudiante1"
+        ],
+        "role": "member",
+        "joined_at": "2026-05-30T23:13:13.357Z"
+    }
+},
+{
+    "model": "trainings.training",
+    "pk": 1,
+    "fields": {
+        "title": "Entrenamiento Basico - Semana 1",
+        "description": "Problemas basicos para calentar motores. Cubre: I/O, condicionales, bucles y matematica basica.",
+        "created_by": [
+            "admin"
+        ],
+        "start_date": "2026-05-29T03:09:38.749Z",
+        "end_date": "2026-06-05T03:09:38.749Z",
+        "status": "active",
+        "is_public": true,
+        "created_at": "2026-05-29T03:09:38.811Z",
+        "updated_at": "2026-05-29T03:09:38.811Z"
+    }
+},
+{
+    "model": "trainings.trainingproblem",
+    "pk": 1,
+    "fields": {
+        "training": 1,
+        "problem": 1,
+        "order": 0
+    }
+},
+{
+    "model": "trainings.trainingproblem",
+    "pk": 2,
+    "fields": {
+        "training": 1,
+        "problem": 2,
+        "order": 1
+    }
+},
+{
+    "model": "trainings.trainingproblem",
+    "pk": 3,
+    "fields": {
+        "training": 1,
+        "problem": 3,
+        "order": 2
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "f618a5aec03c40f1a3ce82eceac44bc9",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyODg5OCwiaWF0IjoxNzgwMDI0MDk4LCJqdGkiOiJmNjE4YTVhZWMwM2M0MGYxYTNjZTgyZWNlYWM0NGJjOSIsInVzZXJfaWQiOiIxIn0.SR02-Vh6jT6tnFDKNNguL7rwoFoREL5ZrKjLK8IFeH8",
+        "created_at": "2026-05-29T03:08:18.585Z",
+        "expires_at": "2026-06-05T03:08:18Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "35b2cb2a005444cca0fd81e89a2192a7",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyODkyMywiaWF0IjoxNzgwMDI0MTIzLCJqdGkiOiIzNWIyY2IyYTAwNTQ0NGNjYTBmZDgxZTg5YTIxOTJhNyIsInVzZXJfaWQiOiIyIn0.7GthSzDu47KhQus4IjrHcqUHMki9MNvdm--24_upNsY",
+        "created_at": "2026-05-29T03:08:43.412Z",
+        "expires_at": "2026-06-05T03:08:43Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "eb651bb4d47a4ca588c84bb961bce412",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyODk5NCwiaWF0IjoxNzgwMDI0MTk0LCJqdGkiOiJlYjY1MWJiNGQ0N2E0Y2E1ODhjODRiYjk2MWJjZTQxMiIsInVzZXJfaWQiOiIxIn0.NrFKvdQbCYtCly-HZ4yH6wYP_OljO7pxoCM8afbT93A",
+        "created_at": "2026-05-29T03:09:54.476Z",
+        "expires_at": "2026-06-05T03:09:54Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "be327679c5c74b81b10e122fe03d9734",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyOTAxMSwiaWF0IjoxNzgwMDI0MjExLCJqdGkiOiJiZTMyNzY3OWM1Yzc0YjgxYjEwZTEyMmZlMDNkOTczNCIsInVzZXJfaWQiOiIxIn0.rAWQlPxVLQFgVjnTGeVCk5gpyMiM9mJYPdCoTWy3KIg",
+        "created_at": "2026-05-29T03:10:11.136Z",
+        "expires_at": "2026-06-05T03:10:11Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "f423dbf8944943828b9084d9d3c86f6b",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyOTAzNywiaWF0IjoxNzgwMDI0MjM3LCJqdGkiOiJmNDIzZGJmODk0NDk0MzgyOGI5MDg0ZDlkM2M4NmY2YiIsInVzZXJfaWQiOiIxIn0.esYYcq4eN1WD_7WalKHpmHk3krO_AntGE6b-5dw4EPk",
+        "created_at": "2026-05-29T03:10:37.328Z",
+        "expires_at": "2026-06-05T03:10:37Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "c0da40e0c8c548fb9151daedb3a377e1",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyOTI2MywiaWF0IjoxNzgwMDI0NDYzLCJqdGkiOiJjMGRhNDBlMGM4YzU0OGZiOTE1MWRhZWRiM2EzNzdlMSIsInVzZXJfaWQiOiIxIn0.YZ99MvTksLgEbJEraCeVBNF07uUgZsNW-cmT1vBH-7w",
+        "created_at": "2026-05-29T03:14:23.313Z",
+        "expires_at": "2026-06-05T03:14:23Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "ccfb8b10959144b7b340618dc3f40dc0",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDYyOTQ5OSwiaWF0IjoxNzgwMDI0Njk5LCJqdGkiOiJjY2ZiOGIxMDk1OTE0NGI3YjM0MDYxOGRjM2Y0MGRjMCIsInVzZXJfaWQiOiIyIn0.42rN-3LWYFKR2RoHKQAbRIWaQAqzgEizxs9s5xof19I",
+        "created_at": "2026-05-29T03:18:19.525Z",
+        "expires_at": "2026-06-05T03:18:19Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "b46e9d091c184fa69189950f0307b0e3",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDcxNDAxNywiaWF0IjoxNzgwMTA5MjE3LCJqdGkiOiJiNDZlOWQwOTFjMTg0ZmE2OTE4OTk1MGYwMzA3YjBlMyIsInVzZXJfaWQiOiIxIn0.fdlm5spGkvkji6SjFNLeHXGgU4GA0QsZ4Nxs3ETfJk8",
+        "created_at": "2026-05-30T02:46:57.153Z",
+        "expires_at": "2026-06-06T02:46:57Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "d73b23c88d2f4bcdbab234c0aa181d44",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDcxNzgzMywiaWF0IjoxNzgwMTEzMDMzLCJqdGkiOiJkNzNiMjNjODhkMmY0YmNkYmFiMjM0YzBhYTE4MWQ0NCIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.NNwgteMCkDedjJNDqGskMn8ZFbsaLFx1tn7qwPtETRk",
+        "created_at": "2026-05-30T03:50:33.984Z",
+        "expires_at": "2026-06-06T03:50:33Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "fadac450f9b942d7b97b58e2f1c5a594",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDcxOTI3OSwiaWF0IjoxNzgwMTE0NDc5LCJqdGkiOiJmYWRhYzQ1MGY5Yjk0MmQ3Yjk3YjU4ZTJmMWM1YTU5NCIsInVzZXJfaWQiOiIxIn0.DCjdyXwrADM__KMjJyQHOe0hzQAPRLk8pDrZ3iJYD2c",
+        "created_at": "2026-05-30T04:14:39.135Z",
+        "expires_at": "2026-06-06T04:14:39Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "0f64362215b44c39bad38eafffb571a5",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4NjM5NSwiaWF0IjoxNzgwMTgxNTk1LCJqdGkiOiIwZjY0MzYyMjE1YjQ0YzM5YmFkMzhlYWZmZmI1NzFhNSIsInVzZXJfaWQiOiIxIn0.QbMr2CcGi_xlUXf_KzVb1SK6cbunMjTnkcyL1as7_Jc",
+        "created_at": "2026-05-30T22:53:15.920Z",
+        "expires_at": "2026-06-06T22:53:15Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "5c24cacf391846039ab85d713eef1c54",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4NjcxNiwiaWF0IjoxNzgwMTgxOTE2LCJqdGkiOiI1YzI0Y2FjZjM5MTg0NjAzOWFiODVkNzEzZWVmMWM1NCIsInVzZXJfaWQiOiIxIn0.LS0oLwuMbR1wA--e0kWDdGo374O3lhgZkf7juknW4GQ",
+        "created_at": "2026-05-30T22:58:36.295Z",
+        "expires_at": "2026-06-06T22:58:36Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "entrenador1"
+        ],
+        "jti": "7df793122b4a4f00906e34960af39517",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4Njk5MSwiaWF0IjoxNzgwMTgyMTkxLCJqdGkiOiI3ZGY3OTMxMjJiNGE0ZjAwOTA2ZTM0OTYwYWYzOTUxNyIsInVzZXJfaWQiOiIzIn0.-Z5auSMS2ho_tnXsJCbuIqplImg9lPc4qNRft8n4-FU",
+        "created_at": "2026-05-30T23:03:11.490Z",
+        "expires_at": "2026-06-06T23:03:11Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "620ee1eec08a46e3bd07bfece078a357",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4NzAwOCwiaWF0IjoxNzgwMTgyMjA4LCJqdGkiOiI2MjBlZTFlZWMwOGE0NmUzYmQwN2JmZWNlMDc4YTM1NyIsInVzZXJfaWQiOiIxIn0.czNcWEMyTqVh77vUXgz5wasQv1xHrUSJDiKuYTn7sVI",
+        "created_at": "2026-05-30T23:03:28.124Z",
+        "expires_at": "2026-06-06T23:03:28Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 15,
+    "fields": {
+        "user": [
+            "entrenador1"
+        ],
+        "jti": "c5b4fd15d68d41a4a451dc5993c9a6de",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4NzMwMywiaWF0IjoxNzgwMTgyNTAzLCJqdGkiOiJjNWI0ZmQxNWQ2OGQ0MWE0YTQ1MWRjNTk5M2M5YTZkZSIsInVzZXJfaWQiOiIzIn0.2OrWFfi5AsMana7g2AFby4vDRTVq7WNS10R3brpyHi4",
+        "created_at": "2026-05-30T23:08:23.563Z",
+        "expires_at": "2026-06-06T23:08:23Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 16,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "5777401cdf394e30bb807ae078da7202",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4Nzk2MywiaWF0IjoxNzgwMTgzMTYzLCJqdGkiOiI1Nzc3NDAxY2RmMzk0ZTMwYmI4MDdhZTA3OGRhNzIwMiIsInVzZXJfaWQiOiIyIn0.MXBe-QQ6mn6AAFqeeR0-RH0t9H9zEOufdC9ihaU6uXo",
+        "created_at": "2026-05-30T23:19:23.910Z",
+        "expires_at": "2026-06-06T23:19:23Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 17,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "fd67bd3044b142c78fd1728ced0f6547",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDc4OTEzMSwiaWF0IjoxNzgwMTg0MzMxLCJqdGkiOiJmZDY3YmQzMDQ0YjE0MmM3OGZkMTcyOGNlZDBmNjU0NyIsInVzZXJfaWQiOiIxIn0.Aq25qQtUnSp7j-Miv-eeGI5oqlPOOk6G8Xqm9CRe4-0",
+        "created_at": "2026-05-30T23:38:51.946Z",
+        "expires_at": "2026-06-06T23:38:51Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 18,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "c9f826da1d1e43e7962ee85e13be7ae5",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDk2MDc1MywiaWF0IjoxNzgwMzU1OTUzLCJqdGkiOiJjOWY4MjZkYTFkMWU0M2U3OTYyZWU4NWUxM2JlN2FlNSIsInVzZXJfaWQiOiIxIn0.ytKB_ICD6aBARwCcG39yJsiI6QLPzr0HYo5szcvus6c",
+        "created_at": "2026-06-01T23:19:13.596Z",
+        "expires_at": "2026-06-08T23:19:13Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 19,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "35f4fe90675f4496ac6ba33f7233046e",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjEyNSwiaWF0IjoxNzgwNDI3MzI1LCJqdGkiOiIzNWY0ZmU5MDY3NWY0NDk2YWM2YmEzM2Y3MjMzMDQ2ZSIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.pgiBPOoXqzyUj2BaWR2hg1g59Lx3WQP39fiAlM1PZ6A",
+        "created_at": "2026-06-02T19:08:45.200Z",
+        "expires_at": "2026-06-09T19:08:45Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 20,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "30ea74229ede474a9f74a48e8dcbd58f",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjEyNSwiaWF0IjoxNzgwNDI3MzI1LCJqdGkiOiIzMGVhNzQyMjllZGU0NzRhOWY3NGE0OGU4ZGNiZDU4ZiIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.uYXw7oaitnMWK-NFXRxc62whIWMMfT4xyeTVLrkr0d4",
+        "created_at": "2026-06-02T19:08:45.284Z",
+        "expires_at": "2026-06-09T19:08:45Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 21,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "bf4d790347864916ae8536edc2b39819",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjEyNSwiaWF0IjoxNzgwNDI3MzI1LCJqdGkiOiJiZjRkNzkwMzQ3ODY0OTE2YWU4NTM2ZWRjMmIzOTgxOSIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.Hzup4mCpzs4rnpcdC68BCt2dcc-V1FX1ulbOnRky4YM",
+        "created_at": "2026-06-02T19:08:45.197Z",
+        "expires_at": "2026-06-09T19:08:45Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 22,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "01f51fcdaa874da0a7d91c01a273db50",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjE5OSwiaWF0IjoxNzgwNDI3Mzk5LCJqdGkiOiIwMWY1MWZjZGFhODc0ZGEwYTdkOTFjMDFhMjczZGI1MCIsInVzZXJfaWQiOiIxIn0.uxrbtGiPVuqp0NPbEHFsbwsN2g3wPlTaCtE9eQBoR3Q",
+        "created_at": "2026-06-02T19:09:59.078Z",
+        "expires_at": "2026-06-09T19:09:59Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 23,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "6c7c291fb1fd4519bccde249c21ee982",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjQ5NCwiaWF0IjoxNzgwNDI3Njk0LCJqdGkiOiI2YzdjMjkxZmIxZmQ0NTE5YmNjZGUyNDljMjFlZTk4MiIsInVzZXJfaWQiOiIyIn0.zXN5DSPttPqNMrZcBGzh5xiMaGtJRyLQx1N8NBRGjLg",
+        "created_at": "2026-06-02T19:14:54.174Z",
+        "expires_at": "2026-06-09T19:14:54Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 24,
+    "fields": {
+        "user": [
+            "entrenador1"
+        ],
+        "jti": "615d6c874f2e41599e32448aa594a902",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTAzMjcwMiwiaWF0IjoxNzgwNDI3OTAyLCJqdGkiOiI2MTVkNmM4NzRmMmU0MTU5OWUzMjQ0OGFhNTk0YTkwMiIsInVzZXJfaWQiOiIzIn0.kWNIAKDZpgz515lnaG0xTsLNyi4EuKp8G7QnyPdj0fs",
+        "created_at": "2026-06-02T19:18:22.106Z",
+        "expires_at": "2026-06-09T19:18:22Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 25,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "b7746684061541d297329460b12953ac",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTIwNDI2NCwiaWF0IjoxNzgwNTk5NDY0LCJqdGkiOiJiNzc0NjY4NDA2MTU0MWQyOTczMjk0NjBiMTI5NTNhYyIsInVzZXJfaWQiOiIxIn0.MZ5tpQbfX6TpsRm6vyIhgcJBQBLS8N4ghKzdX9DlZVI",
+        "created_at": "2026-06-04T18:57:44.507Z",
+        "expires_at": "2026-06-11T18:57:44Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 26,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "5ce1150ae7694755b80ab3ff05032200",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTIwNDUwNSwiaWF0IjoxNzgwNTk5NzA1LCJqdGkiOiI1Y2UxMTUwYWU3Njk0NzU1YjgwYWIzZmYwNTAzMjIwMCIsInVzZXJfaWQiOiIyIn0.h1yjOhKW0PcZZWLDQEOHhl6O_AGGFrvxMxIoBXGCj54",
+        "created_at": "2026-06-04T19:01:45.655Z",
+        "expires_at": "2026-06-11T19:01:45Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 27,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "261a2e5228fa4e64b6435e402eb9b074",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTIwNjIzOSwiaWF0IjoxNzgwNjAxNDM5LCJqdGkiOiIyNjFhMmU1MjI4ZmE0ZTY0YjY0MzVlNDAyZWI5YjA3NCIsInVzZXJfaWQiOiIxIn0.jC6DZ-WojN4G-5X0i3pGK3gKFt1ph4p-rTK1w61Ioco",
+        "created_at": "2026-06-04T19:30:39.644Z",
+        "expires_at": "2026-06-11T19:30:39Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 28,
+    "fields": {
+        "user": [
+            "entrenador1"
+        ],
+        "jti": "e39ec979013c4359977eb39d2c56e0d8",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTIwNzMxMSwiaWF0IjoxNzgwNjAyNTExLCJqdGkiOiJlMzllYzk3OTAxM2M0MzU5OTc3ZWIzOWQyYzU2ZTBkOCIsInVzZXJfaWQiOiIzIn0.oPsiBxIBZYd96EuVcTqSTBsFIYWZPjNRre6H-KhLDR4",
+        "created_at": "2026-06-04T19:48:31.043Z",
+        "expires_at": "2026-06-11T19:48:31Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 29,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "0508216599ce4b37a38fd7b53192c476",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTIwNzM3MiwiaWF0IjoxNzgwNjAyNTcyLCJqdGkiOiIwNTA4MjE2NTk5Y2U0YjM3YTM4ZmQ3YjUzMTkyYzQ3NiIsInVzZXJfaWQiOiIxIn0.x6DkCQE693Tdt9dj-ppLEE9D1H1jQxLHYNilK-vUFxg",
+        "created_at": "2026-06-04T19:49:32.063Z",
+        "expires_at": "2026-06-11T19:49:32Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 30,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "e083e2309cae4295b88285c7b10cee43",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQxODQ3NSwiaWF0IjoxNzgxODEzNjc1LCJqdGkiOiJlMDgzZTIzMDljYWU0Mjk1Yjg4Mjg1YzdiMTBjZWU0MyIsInVzZXJfaWQiOiIxIn0.cQc_ZkfrqTR4D64TbUBRerY-rAJ1hVT9GHBNL72MvRo",
+        "created_at": "2026-06-18T20:14:35.332Z",
+        "expires_at": "2026-06-25T20:14:35Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 31,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "73fe8a6d308b496aba55ce6d2519a03b",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQzMTQxOCwiaWF0IjoxNzgxODI2NjE4LCJqdGkiOiI3M2ZlOGE2ZDMwOGI0OTZhYmE1NWNlNmQyNTE5YTAzYiIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.hNAN_Rwlq3iZdogrLLCM-G9R_MZzjEjaKG5wX0EqQlM",
+        "created_at": "2026-06-18T23:50:18.201Z",
+        "expires_at": "2026-06-25T23:50:18Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 32,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "9623938304f44216a8fabe9b37c1c9e8",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQzMTQxOCwiaWF0IjoxNzgxODI2NjE4LCJqdGkiOiI5NjIzOTM4MzA0ZjQ0MjE2YThmYWJlOWIzN2MxYzllOCIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.epUKDoYerbtyiif6pMGlQLJV4XULISICjEeDKjwrM54",
+        "created_at": "2026-06-18T23:50:18.231Z",
+        "expires_at": "2026-06-25T23:50:18Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 33,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "32e0444adfe34b3cab34435d15465d2f",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQzMTQxOCwiaWF0IjoxNzgxODI2NjE4LCJqdGkiOiIzMmUwNDQ0YWRmZTM0YjNjYWIzNDQzNWQxNTQ2NWQyZiIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.24R0h3w4C5x3bSA7nbpIwRkpLDiEGGDDIme75Zvevu8",
+        "created_at": "2026-06-18T23:50:18.204Z",
+        "expires_at": "2026-06-25T23:50:18Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 34,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "7568b31affc64dbbb3a26c4e6b66ed0c",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQzMTQyNCwiaWF0IjoxNzgxODI2NjI0LCJqdGkiOiI3NTY4YjMxYWZmYzY0ZGJiYjNhMjZjNGU2YjY2ZWQwYyIsInVzZXJfaWQiOiIxIn0.KSE3QgVV4VOXAaqygoaGL993ZdPDKyZ-5KaCPvMB4X0",
+        "created_at": "2026-06-18T23:50:24.503Z",
+        "expires_at": "2026-06-25T23:50:24Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 35,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "5b11ee92db5c4106925ca1cf87ef3972",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MjQzNDk3NiwiaWF0IjoxNzgxODMwMTc2LCJqdGkiOiI1YjExZWU5MmRiNWM0MTA2OTI1Y2ExY2Y4N2VmMzk3MiIsInVzZXJfaWQiOiIxIn0.ZQN_iZl0GElKWo3waOpkBkbsA7G5z20EF1MVVZqW1ZM",
+        "created_at": "2026-06-19T00:49:36.566Z",
+        "expires_at": "2026-06-26T00:49:36Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 36,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "8ef40722ff6d43d7ba205419dc85752b",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiI4ZWY0MDcyMmZmNmQ0M2Q3YmEyMDU0MTlkYzg1NzUyYiIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.mmbGQlUUIP-OMI0MZUHL3qkjhf6tSWdFJG2ghRYWItQ",
+        "created_at": "2026-06-22T21:49:20.416Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 37,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "9a1ad3c1b7c547a08d0078d68e65020c",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiI5YTFhZDNjMWI3YzU0N2EwOGQwMDc4ZDY4ZTY1MDIwYyIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.aDdGaf7rJkkH5jR9sragZJATAjceDNJtFMzDfTxO2iY",
+        "created_at": "2026-06-22T21:49:20.400Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 38,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "093df2e012b24f0e9bc7b20c628630a8",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiIwOTNkZjJlMDEyYjI0ZjBlOWJjN2IyMGM2Mjg2MzBhOCIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.vLsl_AwDo4r8zNlucGZQqVnDwWps5Tn3MvzG-v19hKw",
+        "created_at": "2026-06-22T21:49:20.431Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 39,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "77f7ca3436e8439db607efd6f6d5f6fa",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiI3N2Y3Y2EzNDM2ZTg0MzlkYjYwN2VmZDZmNmQ1ZjZmYSIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.hY1SlxSRFG7i8DkdfIRSgXDnPtIV4_x0b3oxioPQJ2Y",
+        "created_at": "2026-06-22T21:49:20.467Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 40,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "b30b6d1be9ea448d9fa57517addecfab",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiJiMzBiNmQxYmU5ZWE0NDhkOWZhNTc1MTdhZGRlY2ZhYiIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.1Oz481PrP1xTGcZIQk1DQTCKi_BWh3n633oEgBfYmLE",
+        "created_at": "2026-06-22T21:49:20.363Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 41,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "bc357a0e19c24bbfb41b62603f828bee",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2MCwiaWF0IjoxNzgyMTY0OTYwLCJqdGkiOiJiYzM1N2EwZTE5YzI0YmJmYjQxYjYyNjAzZjgyOGJlZSIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.k9GLvSCbabEvqT1KQIiRRUaY9rNT7eamzWWS-jSrSUk",
+        "created_at": "2026-06-22T21:49:20.395Z",
+        "expires_at": "2026-06-29T21:49:20Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 42,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "0be7f1ca0258419386df10f78e5a16a7",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTc2NywiaWF0IjoxNzgyMTY0OTY3LCJqdGkiOiIwYmU3ZjFjYTAyNTg0MTkzODZkZjEwZjc4ZTVhMTZhNyIsInVzZXJfaWQiOiIxIn0.HE6qultKf8_Bd70yjLZ1XLkLIdSOK9G_-66XjQFkpdU",
+        "created_at": "2026-06-22T21:49:27.883Z",
+        "expires_at": "2026-06-29T21:49:27Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 43,
+    "fields": {
+        "user": [
+            "entrenador1"
+        ],
+        "jti": "dd6c30c82b5e4ee4a3d5df21b0a36a28",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTk2NSwiaWF0IjoxNzgyMTY1MTY1LCJqdGkiOiJkZDZjMzBjODJiNWU0ZWU0YTNkNWRmMjFiMGEzNmEyOCIsInVzZXJfaWQiOiIzIn0.J_QYpTGbxFe-rnJ0Rtwdq2nbfQemEF2w8u0qsQF9__M",
+        "created_at": "2026-06-22T21:52:45.158Z",
+        "expires_at": "2026-06-29T21:52:45Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 44,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "a343049e709e457bad23c113fb71c7cc",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc2OTk5MiwiaWF0IjoxNzgyMTY1MTkyLCJqdGkiOiJhMzQzMDQ5ZTcwOWU0NTdiYWQyM2MxMTNmYjcxYzdjYyIsInVzZXJfaWQiOiIyIn0.OECTr_F6-U4V5Dq60oeMtObc6yZU892oJYOQk7Evt6c",
+        "created_at": "2026-06-22T21:53:12.844Z",
+        "expires_at": "2026-06-29T21:53:12Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 45,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "ff63ae4e45d847e68e603f255c710ef2",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc3MDk3NywiaWF0IjoxNzgyMTY2MTc3LCJqdGkiOiJmZjYzYWU0ZTQ1ZDg0N2U2OGU2MDNmMjU1YzcxMGVmMiIsInVzZXJfaWQiOiIxIn0.cZlgAjMxfyyxVZVjmFH7Jh6Zu4sGBgqExBzgJ4lLmLE",
+        "created_at": "2026-06-22T22:09:37.899Z",
+        "expires_at": "2026-06-29T22:09:37Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 46,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "8d20e94f21d6494fa04f4fcd5b01f165",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc3MTEzMCwiaWF0IjoxNzgyMTY2MzMwLCJqdGkiOiI4ZDIwZTk0ZjIxZDY0OTRmYTA0ZjRmY2Q1YjAxZjE2NSIsInVzZXJfaWQiOiIyIn0.xoDHQz8IqVFYtgBG-Gfke8FLMKs1poD6xJl0YGXhexU",
+        "created_at": "2026-06-22T22:12:10.214Z",
+        "expires_at": "2026-06-29T22:12:10Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 47,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "51ba451a2d4a4ed9b07788fe3ade55af",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc3NDQ4MiwiaWF0IjoxNzgyMTY5NjgyLCJqdGkiOiI1MWJhNDUxYTJkNGE0ZWQ5YjA3Nzg4ZmUzYWRlNTVhZiIsInVzZXJfaWQiOiIxIn0.WgCdadEZU_whwkKA7D81A8q-peYKc4l8K6vIHaqI2ZU",
+        "created_at": "2026-06-22T23:08:02.680Z",
+        "expires_at": "2026-06-29T23:08:02Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 48,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "7b1dde51985d4a53ab05cabbae1f6e74",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc3NDUzNCwiaWF0IjoxNzgyMTY5NzM0LCJqdGkiOiI3YjFkZGU1MTk4NWQ0YTUzYWIwNWNhYmJhZTFmNmU3NCIsInVzZXJfaWQiOiIyIn0.EdxYeWZlL_oNMJDR7VKUwh88DjrA40SPn4ZPAuiTA6Q",
+        "created_at": "2026-06-22T23:08:54.409Z",
+        "expires_at": "2026-06-29T23:08:54Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 49,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "939aca3c65914ef9b9b37eb8bab0c689",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiI5MzlhY2EzYzY1OTE0ZWY5YjliMzdlYjhiYWIwYzY4OSIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.3ZzArNDaC4iLpeDnA0q-WGr6yidg0ONkzTC3-7ypTY0",
+        "created_at": "2026-06-23T02:24:55.466Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 50,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "526f21d3ebd7427d887bc5ac6ce1cdc1",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiI1MjZmMjFkM2ViZDc0MjdkODg3YmM1YWM2Y2UxY2RjMSIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.VwUrT_bl37qxt5JsFHeSj9x67qateoRIbrhLZpwqXKo",
+        "created_at": "2026-06-23T02:24:55.491Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 51,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "a8bde4950b594a6d913f0a57826f56f6",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiJhOGJkZTQ5NTBiNTk0YTZkOTEzZjBhNTc4MjZmNTZmNiIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.Z7NgUoLjUkdCHlP1zg-f-0UoIEl5b5nTXeWe4Qu4C_U",
+        "created_at": "2026-06-23T02:24:55.504Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 52,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "354aa51246e3453b81369f8aa7f0375c",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiIzNTRhYTUxMjQ2ZTM0NTNiODEzNjlmOGFhN2YwMzc1YyIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.UfFDYJKXqNqsaWdwTEIBMoW7_e_GX5JygEqRoYKW0DY",
+        "created_at": "2026-06-23T02:24:55.532Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 53,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "3a8cc8fa5c0c4c3eb47e2645404d13b5",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiIzYThjYzhmYTVjMGM0YzNlYjQ3ZTI2NDU0MDRkMTNiNSIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.6yMDOHGCZ7VCF0dh18TzlgMsYVnff1Gfr0BAk3n2bog",
+        "created_at": "2026-06-23T02:24:55.510Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 54,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "e6a9cdaa1f464362974048e4c5289773",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjI5NSwiaWF0IjoxNzgyMTgxNDk1LCJqdGkiOiJlNmE5Y2RhYTFmNDY0MzYyOTc0MDQ4ZTRjNTI4OTc3MyIsInVzZXJfaWQiOiIyIiwidXNlcm5hbWUiOiJlc3R1ZGlhbnRlMSIsImVtYWlsIjoiZXN0MUB1YWdybS5lZHUuYm8iLCJyb2xlIjoic3R1ZGVudCIsImZ1bGxfbmFtZSI6IkNhcmxvcyBSb2phcyJ9.sjvduWKAcNoztsbs_X59pLqv06YFajY7X-D4EC5WZKE",
+        "created_at": "2026-06-23T02:24:55.481Z",
+        "expires_at": "2026-06-30T02:24:55Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 55,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "4ecdbcc716d34cbaabb5364fba1ba52a",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc4NjMwNiwiaWF0IjoxNzgyMTgxNTA2LCJqdGkiOiI0ZWNkYmNjNzE2ZDM0Y2JhYWJiNTM2NGZiYTFiYTUyYSIsInVzZXJfaWQiOiIxIn0.q-SUq5zJVQ1DRIQOgzKet0c8jIoFopBsvEOk0YjrDIA",
+        "created_at": "2026-06-23T02:25:06.288Z",
+        "expires_at": "2026-06-30T02:25:06Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 56,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "jti": "0fcda5e37de8461eaa6b004a50858f0a",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc5MzUwNCwiaWF0IjoxNzgyMTg4NzA0LCJqdGkiOiIwZmNkYTVlMzdkZTg0NjFlYWE2YjAwNGE1MDg1OGYwYSIsInVzZXJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AdWFncm0uZWR1LmJvIiwicm9sZSI6ImFkbWluIiwiZnVsbF9uYW1lIjoiQWRtaW5pc3RyYWRvciBJQ1BDIn0.fXug_AjN4vPNDykm0Tj2NvY0iLukRMpaxm3xCVufLwM",
+        "created_at": "2026-06-23T04:25:04.484Z",
+        "expires_at": "2026-06-30T04:25:04Z"
+    }
+},
+{
+    "model": "token_blacklist.outstandingtoken",
+    "pk": 57,
+    "fields": {
+        "user": [
+            "estudiante1"
+        ],
+        "jti": "baaecf541b004ee58e217f8de7c227f9",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4Mjc5MzUwOSwiaWF0IjoxNzgyMTg4NzA5LCJqdGkiOiJiYWFlY2Y1NDFiMDA0ZWU1OGUyMTdmOGRlN2MyMjdmOSIsInVzZXJfaWQiOiIyIn0.-mmeeCs77mPZySYyqrbXsbN17dbUO2uFwwNJW7_-zRU",
+        "created_at": "2026-06-23T04:25:09.382Z",
+        "expires_at": "2026-06-30T04:25:09Z"
+    }
+}
+]
