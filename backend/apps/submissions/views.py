@@ -17,7 +17,7 @@ from .serializers import (
     SubmissionCreateSerializer,
 )
 from apps.users.permissions import IsAdmin, IsOwnerOrAdmin
-from apps.judge.engine import evaluate_submission
+from apps.judge.ai_judge import evaluate_submission_with_ai
 from apps.contests.models import Ranking
 
 
@@ -61,13 +61,14 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         )
 
         # Ejecutar evaluación
-        result = evaluate_submission(submission)
+        result = evaluate_submission_with_ai(submission)
 
         # Actualizar submission con resultado
         submission.verdict = result.verdict
         submission.execution_time_ms = result.execution_time_ms
         submission.memory_used_kb = result.memory_used_kb
         submission.error_message = result.error_message
+        submission.ai_feedback = result.ai_feedback
         submission.test_cases_passed = result.test_cases_passed
         submission.total_test_cases = result.total_test_cases
         submission.save()

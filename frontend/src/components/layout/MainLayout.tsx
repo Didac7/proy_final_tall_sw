@@ -5,6 +5,7 @@
 import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import HelpAgent from '../ui/HelpAgent';
 import {
   IconDashboard, IconCode, IconTrophy, IconSend,
   IconUsers, IconTarget, IconUser, IconKey,
@@ -66,6 +67,7 @@ export default function MainLayout() {
             key={item.path}
             to={item.path}
             aria-label={item.name}
+            data-tour={`tour-${item.name.toLowerCase()}`}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
                 isActive
@@ -94,6 +96,7 @@ export default function MainLayout() {
                 key={item.path}
                 to={item.path}
                 aria-label={item.name}
+                data-tour="tour-admin-panel"
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive
@@ -225,12 +228,16 @@ export default function MainLayout() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="badge bg-primary-500/10 text-primary-400 border border-primary-500/15">
+            <span
+              data-tour="tour-role-badge"
+              className="badge bg-primary-500/10 text-primary-400 border border-primary-500/15"
+            >
               {user?.role_display || 'Sin rol'}
             </span>
             <button
               onClick={handleLogout}
               aria-label="Cerrar sesión"
+              data-tour="tour-logout"
               className="btn-ghost btn-sm gap-1.5 text-surface-500 hover:text-red-400"
             >
               <IconLogout className="w-4 h-4" />
@@ -245,6 +252,7 @@ export default function MainLayout() {
             <Outlet />
           </div>
         </main>
+        <HelpAgent />
       </div>
     </div>
   );

@@ -70,6 +70,11 @@ class Submission(models.Model):
         default='',
         verbose_name='Mensaje de error'
     )
+    ai_feedback = models.TextField(
+        blank=True,
+        default='',
+        verbose_name='Retroalimentación de la IA'
+    )
     test_cases_passed = models.IntegerField(
         default=0,
         verbose_name='Casos de prueba pasados'

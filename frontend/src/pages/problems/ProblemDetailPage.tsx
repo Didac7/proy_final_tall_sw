@@ -19,6 +19,9 @@ export default function ProblemDetailPage() {
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [contestName, setContestName] = useState<string>('');
+  const [contestEndTime, setContestEndTime] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState<string>('');
+  const [isContestFinished, setIsContestFinished] = useState<boolean>(false);
 
   const queryParams = new URLSearchParams(window.location.search);
   const contestId = queryParams.get('contest');
@@ -36,6 +39,9 @@ export default function ProblemDetailPage() {
         try {
           const cRes = await api.get(`/contests/${contestId}/`);
           setContestName(cRes.data.title);
+          if (cRes.data.end_time) {
+            setContestEndTime(cRes.data.end_time);
+          }
         } catch { /* empty */ }
       }
     } catch {
@@ -44,6 +50,46 @@ export default function ProblemDetailPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!contestEndTime) return;
+
+    const calculateTime = () => {
+      const difference = new Date(contestEndTime).getTime() - new Date().getTime();
+      
+      if (difference <= 0) {
+        setIsContestFinished(true);
+        setTimeLeft('Finalizada');
+        return true;
+      }
+
+      const hours = Math.floor(difference / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      const pad = (num: number) => String(num).padStart(2, '0');
+
+      if (hours > 0) {
+        setTimeLeft(`${hours}h ${pad(minutes)}m ${pad(seconds)}s`);
+      } else {
+        setTimeLeft(`${pad(minutes)}m ${pad(seconds)}s`);
+      }
+      setIsContestFinished(false);
+      return false;
+    };
+
+    const isFinishedInitially = calculateTime();
+    if (isFinishedInitially) return;
+
+    const timer = setInterval(() => {
+      const finished = calculateTime();
+      if (finished) {
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [contestEndTime]);
 
   const handleSubmit = async () => {
     if (!code.trim()) return;
@@ -141,9 +187,31 @@ export default function ProblemDetailPage() {
                   {problem.difficulty_display}
                 </span>
               </div>
-              <p className="text-xs text-surface-500 font-display">
-                Publicado por <span className="text-surface-300 font-medium">{problem.author_name}</span>
-              </p>
+              <div className="flex flex-wrap items-center justify-between gap-4 mt-2 border-b border-surface-805/30 pb-3">
+                <p className="text-xs text-surface-500 font-display">
+                  Publicado por <span className="text-surface-300 font-medium">{problem.author_name}</span>
+                </p>
+                {contestId && timeLeft && (
+                  <div
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-display font-semibold transition-all duration-300 ${
+                      isContestFinished
+                        ? 'text-red-400 bg-red-500/10 border-red-500/20 shadow-lg shadow-red-500/5'
+                        : timeLeft.includes('h') || (parseInt(timeLeft.split('m')[0]) >= 15)
+                        ? 'text-primary-400 bg-primary-500/10 border-primary-500/20 shadow-lg shadow-primary-500/5'
+                        : 'text-amber-400 bg-amber-500/10 border-amber-500/20 shadow-lg shadow-amber-500/5 animate-pulse'
+                    }`}
+                  >
+                    <IconClock
+                      className={`w-4 h-4 ${
+                        !isContestFinished && !timeLeft.includes('h') && parseInt(timeLeft.split('m')[0]) < 15
+                          ? 'animate-spin-slow'
+                          : ''
+                      }`}
+                    />
+                    <span>Tiempo Restante: {timeLeft}</span>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Constraints Row */}
@@ -261,14 +329,20 @@ export default function ProblemDetailPage() {
 
             <button
               onClick={handleSubmit}
-              disabled={submitting || !code.trim()}
-              className="btn-primary w-full mt-4 flex items-center justify-center gap-2 py-3 shadow-lg shadow-primary-500/10 hover:shadow-primary-500/20"
+              disabled={submitting || !code.trim() || isContestFinished}
+              className={`w-full mt-4 flex items-center justify-center gap-2 py-3 shadow-lg transition-all rounded-lg font-display font-medium text-sm border ${
+                isContestFinished 
+                  ? 'bg-surface-800 text-surface-400 border-surface-700 cursor-not-allowed pointer-events-none opacity-50 shadow-none' 
+                  : 'bg-gradient-to-r from-primary-600 to-primary-500 text-white border-transparent hover:from-primary-500 hover:to-primary-400 shadow-primary-500/10 hover:shadow-glow-primary active:scale-[0.97]'
+              }`}
             >
               {submitting ? (
                 <>
                   <Spinner size="sm" className="border-white" />
                   <span className="animate-pulse-soft">Evaluando en el Juez...</span>
                 </>
+              ) : isContestFinished ? (
+                <span>Competencia Finalizada</span>
               ) : (
                 <>
                   <IconSend className="w-4 h-4" />
@@ -328,6 +402,21 @@ export default function ProblemDetailPage() {
                   <pre className="bg-surface-950 rounded-xl p-3 text-xs font-mono text-red-400 overflow-x-auto max-h-48 border border-red-900/30">
                     {result.error_message}
                   </pre>
+                </div>
+              )}
+
+              {result.ai_feedback && !contestId && (
+                <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-indigo-500/5 border border-purple-500/20 shadow-md">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464a1 1 0 10-1.414-1.414l-.707.707a1 1 0 101.414 1.414l.707-.707zM5 10a1 1 0 11-2 0 1 1 0 012 0zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.657 15.657a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM16 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1z" />
+                      <path fillRule="evenodd" d="M10 6a4 4 0 100 8 4 4 0 000-8zm0 2a2 2 0 100 4 2 2 0 000-4z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-xs font-bold text-purple-300 uppercase tracking-wider font-display">Tutor Inteligente IA</p>
+                  </div>
+                  <div className="text-xs text-surface-200 leading-relaxed whitespace-pre-wrap font-sans">
+                    {result.ai_feedback}
+                  </div>
                 </div>
               )}
             </div>

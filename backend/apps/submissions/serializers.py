@@ -40,7 +40,7 @@ class SubmissionDetailSerializer(serializers.ModelSerializer):
             'id', 'user', 'username', 'problem', 'problem_title',
             'contest', 'language', 'language_display', 'source_code',
             'verdict', 'verdict_display', 'execution_time_ms',
-            'memory_used_kb', 'error_message',
+            'memory_used_kb', 'error_message', 'ai_feedback',
             'test_cases_passed', 'total_test_cases', 'submitted_at'
         ]
 
