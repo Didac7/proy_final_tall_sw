@@ -1,6 +1,6 @@
 /**
  * HelpAgent — Agente Asistente Virtual Interactivo y de Onboarding.
- * Combina un tour guiado interactivo de la interfaz y un chatbot de soporte integrado con la API de Gemini.
+ * Combina un tour guiado interactivo de la interfaz y un chatbot de soporte integrado con la API de OpenAI (gpt-5.4).
  */
 import React, { useState, useEffect, useRef } from 'react';
 import api from '../../services/api';
@@ -311,7 +311,7 @@ export default function HelpAgent() {
                 </div>
                 <div>
                   <h3 className="font-bold text-sm text-surface-100 font-display">Tutor de Guía Virtual</h3>
-                  <p className="text-[10px] text-purple-400 font-display font-medium">Gemini 2.5 Active</p>
+                  <p className="text-[10px] text-purple-400 font-display font-medium">ChatGPT 5.4 Active</p>
                 </div>
               </div>
               <button

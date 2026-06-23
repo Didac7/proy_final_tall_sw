@@ -1,18 +1,17 @@
 """
-Motor de evaluación automática basado en Inteligencia Artificial (Google Gemini).
+Motor de evaluación automática basado en Inteligencia Artificial (OpenAI ChatGPT).
 Analiza el código y retorna resultados estructurados (JSON).
 """
 
 import json
 import logging
-import google.generativeai as genai
-from google.generativeai import types
+from openai import OpenAI
 from django.conf import settings
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
-# 1. Definición del esquema JSON estricto para Gemini
+# 1. Definición del esquema JSON estricto para OpenAI
 class JudgeOutputSchema(BaseModel):
     verdict: str = Field(
         description="El veredicto técnico final para el código. Debe ser obligatoriamente uno de estos: 'AC' (Accepted), 'WA' (Wrong Answer), 'TLE' (Time Limit Exceeded), 'RE' (Runtime Error), o 'CE' (Compilation Error)"
@@ -31,8 +30,8 @@ class JudgeOutputSchema(BaseModel):
     )
 
 
-class GeminiJudgeResult:
-    """Clase envolvente del resultado para compatibilidad."""
+class AIJudgeResult:
+    """Clase envolvente del resultado para compatibilidad de vistas."""
     def __init__(self, verdict, execution_time_ms=0, memory_used_kb=0,
                  error_message='', ai_feedback='', test_cases_passed=0, total_test_cases=0):
         self.verdict = verdict
@@ -46,20 +45,19 @@ class GeminiJudgeResult:
 
 def evaluate_submission_with_ai(submission):
     """
-    Evalúa una solución enviada por un estudiante usando la API de Gemini.
+    Evalúa una solución enviada por un estudiante usando la API de OpenAI con el modelo gpt-5.4.
     """
     problem = submission.problem
     test_cases = problem.test_cases.all().order_by('order')
     total_test_cases = test_cases.count()
 
-    # Si la clave API de Gemini no está configurada o contiene el placeholder de ejemplo
-    api_key = getattr(settings, 'GEMINI_API_KEY', '')
-    if not api_key or api_key == 'YOUR_GEMINI_API_KEY_HERE':
-        logger.error("La clave API de Gemini no está configurada en settings o contiene el valor por defecto.")
-        return GeminiJudgeResult(
+    api_key = getattr(settings, 'OPENAI_API_KEY', '')
+    if not api_key:
+        logger.error("La clave API de OpenAI no está configurada en settings.")
+        return AIJudgeResult(
             verdict='RE',
-            error_message="La clave API de Gemini ('GEMINI_API_KEY') no está configurada en el archivo .env del servidor.",
-            ai_feedback="Por favor, solicita al administrador del sistema que configure una clave API de Google Gemini válida en las variables de entorno.",
+            error_message="La clave API de OpenAI ('OPENAI_API_KEY') no está configurada en el archivo .env del servidor.",
+            ai_feedback="Por favor, configura una clave API de OpenAI válida en las variables de entorno.",
             total_test_cases=total_test_cases,
             test_cases_passed=0
         )
@@ -74,13 +72,10 @@ def evaluate_submission_with_ai(submission):
         })
 
     try:
-        # Configurar la API de Gemini
-        genai.configure(api_key=api_key)
-        
-        # Usar el modelo gemini-2.5-flash por su velocidad y soporte para formatos estructurados
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        # Inicializar el cliente de OpenAI
+        client = OpenAI(api_key=api_key)
 
-        # Prompt con especificaciones y reglas estrictas de evaluación
+        # Prompt con especificaciones y reglas de evaluación
         prompt = f"""
         Actúa como un Juez Automático ICPC oficial y Entrenador de Programación Competitiva.
         Tu trabajo es evaluar la corrección del código de programación enviado por un estudiante.
@@ -119,39 +114,40 @@ def evaluate_submission_with_ai(submission):
         7. Proporciona una retroalimentación didáctica y comprensible en español (en 'ai_feedback') explicando qué falló y dando consejos conceptuales (ej. complejidad temporal, casos borde), pero NUNCA incluyas la solución directa en código.
         """
 
-        # Generar contenido forzando la salida estructurada
-        response = model.generate_content(
-            prompt,
-            generation_config=types.GenerationConfig(
-                response_mime_type="application/json",
-                response_schema=JudgeOutputSchema,
-                temperature=0.1,  # Temperatura baja para mayor consistencia técnica
-            ),
+        # Generar contenido forzando la salida estructurada con el modelo gpt-5.4
+        response = client.beta.chat.completions.parse(
+            model="gpt-5.4",
+            messages=[
+                {"role": "system", "content": "Eres un juez automático ICPC de alta precisión que responde en formato JSON estructurado."},
+                {"role": "user", "content": prompt}
+            ],
+            response_format=JudgeOutputSchema,
+            temperature=0.1
         )
 
-        # Parsear el JSON retornado
-        result_json = json.loads(response.text)
+        # Obtener el resultado parseado directamente
+        result_obj = response.choices[0].message.parsed
         
-        # Validar y limpiar el veredicto
-        verdict = result_json.get('verdict', 'RE')
+        # Validar veredicto
+        verdict = result_obj.verdict
         if verdict not in ['AC', 'WA', 'TLE', 'RE', 'CE']:
             verdict = 'RE'
 
-        return GeminiJudgeResult(
+        return AIJudgeResult(
             verdict=verdict,
-            execution_time_ms=result_json.get('execution_time_ms', 0),
-            memory_used_kb=0, # IA no puede medir memoria con precisión
-            error_message=result_json.get('error_message', ''),
-            ai_feedback=result_json.get('ai_feedback', ''),
-            test_cases_passed=result_json.get('test_cases_passed', 0),
+            execution_time_ms=result_obj.execution_time_ms,
+            memory_used_kb=0,
+            error_message=result_obj.error_message,
+            ai_feedback=result_obj.ai_feedback,
+            test_cases_passed=result_obj.test_cases_passed,
             total_test_cases=total_test_cases
         )
 
     except Exception as e:
-        logger.exception("Error durante la evaluación con la API de Gemini")
-        return GeminiJudgeResult(
+        logger.exception("Error durante la evaluación con la API de OpenAI (gpt-5.4)")
+        return AIJudgeResult(
             verdict='RE',
-            error_message=f"Error en la llamada a la API de Gemini: {str(e)}",
+            error_message=f"Error en la llamada a la API de OpenAI: {str(e)}",
             ai_feedback="Ocurrió un error inesperado al intentar evaluar la solución con la Inteligencia Artificial. Por favor intenta de nuevo.",
             total_test_cases=total_test_cases,
             test_cases_passed=0

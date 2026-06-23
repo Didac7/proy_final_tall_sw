@@ -1,9 +1,9 @@
 """
-Servicio de asistencia virtual conversacional (Tutor de Guía de Uso) usando Gemini API.
+Servicio de asistencia virtual conversacional (Tutor de Guía de Uso) usando OpenAI API (gpt-5.4).
 """
 
 import logging
-import google.generativeai as genai
+from openai import OpenAI
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ INFORMACIÓN DEL SISTEMA (MANUAL DE USO):
 
 2. MÓDULOS DE LA PLATAFORMA:
    - Banco de Problemas (/problems): Lista de problemas públicos. Permite filtrar por dificultad. Al entrar a un problema, el alumno tiene un editor de código (Monaco Editor) donde escribe soluciones en Python o Java.
-   - Juez IA: Las soluciones son evaluadas por un Juez de Inteligencia Artificial (Google Gemini) que valida la sintaxis, complejidad algorítmica y casos de prueba. Entrega veredictos: AC (Aceptado), WA (Respuesta incorrecta), TLE (Tiempo límite excedido), RE (Error de ejecución) o CE (Error de compilación). Si el alumno falla en una práctica libre, el "Tutor IA" le da recomendaciones sobre cómo mejorar.
+   - Juez IA: Las soluciones son evaluadas por un Juez de Inteligencia Artificial (ChatGPT 5.4) que valida la sintaxis, complejidad algorítmica y casos de prueba. Entrega veredictos: AC (Aceptado), WA (Respuesta incorrecta), TLE (Tiempo límite excedido), RE (Error de ejecución) o CE (Error de compilación). Si el alumno falla en una práctica libre, el "Tutor IA" le da recomendaciones sobre cómo mejorar.
    - Competencias (/contests): Torneos de programación. Tienen cronómetro en tiempo real y tabla de posiciones (Ranking). Durante una competencia activa, el bloque de "Tutor IA" se oculta en el frontend para evitar trampas.
    - Entrenamientos (/trainings): Lista de problemas agrupados para práctica.
    - Equipos (/teams): Grupos de programación liderados por un Coach y compuestos por estudiantes (titulares y suplentes).
@@ -37,30 +37,32 @@ REGLAS DE RESPUESTA:
 3. Si el usuario te pregunta por temas completamente ajenos al sistema (ej. historia, recetas, tareas generales), dile amablemente que solo estás capacitado para responder dudas sobre el uso de la Plataforma ICPC UAGRM.
 """
 
-def ask_gemini_assistant(user_message, history=None):
+def ask_openai_assistant(user_message, history=None):
     """
-    Envía la consulta del usuario a Gemini con el contexto de la guía de uso.
-    `history` debe ser una lista de tuplas o diccionarios con el historial de la conversación.
+    Envía la consulta del usuario a OpenAI con el contexto de la guía de uso.
+    `history` es opcional y se incluye por compatibilidad de firma.
     """
-    api_key = getattr(settings, 'GEMINI_API_KEY', '')
-    if not api_key or api_key == 'YOUR_GEMINI_API_KEY_HERE':
-        return "El administrador del sistema aún no ha configurado la clave de la API de Gemini para el Asistente Virtual."
+    api_key = getattr(settings, 'OPENAI_API_KEY', '')
+    if not api_key:
+        logger.error("La clave API de OpenAI no está configurada en settings.")
+        return "El administrador del sistema aún no ha configurado la clave de la API de OpenAI para el Asistente Virtual."
 
     try:
-        genai.configure(api_key=api_key)
-        # Usamos gemini-2.5-flash ya que confirmamos que está disponible y activo
-        model = genai.GenerativeModel(
-            model_name='gemini-2.5-flash',
-            system_instruction=SYSTEM_PROMPT
-        )
-
-        # Configurar chat de Gemini
-        chat = model.start_chat(history=[])
+        client = OpenAI(api_key=api_key)
         
-        # Enviar el mensaje
-        response = chat.send_message(user_message)
-        return response.text
+        # Realizar llamada a chat completion usando el modelo gpt-5.4
+        response = client.chat.completions.create(
+            model="gpt-5.4",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.7
+        )
+        return response.choices[0].message.content
 
     except Exception as e:
-        logger.exception("Error en el asistente virtual de Gemini")
+        logger.exception("Error en el asistente virtual de OpenAI (gpt-5.4)")
         return f"Lo siento, ocurrió un error temporal al comunicarme con mi servidor. Detalle: {str(e)}"
+
+

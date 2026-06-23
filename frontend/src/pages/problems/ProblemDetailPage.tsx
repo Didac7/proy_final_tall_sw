@@ -412,7 +412,7 @@ export default function ProblemDetailPage() {
                       <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464a1 1 0 10-1.414-1.414l-.707.707a1 1 0 101.414 1.414l.707-.707zM5 10a1 1 0 11-2 0 1 1 0 012 0zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.657 15.657a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM16 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1z" />
                       <path fillRule="evenodd" d="M10 6a4 4 0 100 8 4 4 0 000-8zm0 2a2 2 0 100 4 2 2 0 000-4z" clipRule="evenodd" />
                     </svg>
-                    <p className="text-xs font-bold text-purple-300 uppercase tracking-wider font-display">Tutor Inteligente IA</p>
+                    <p className="text-xs font-bold text-purple-300 uppercase tracking-wider font-display">Tutor Inteligente IA (ChatGPT 5.4)</p>
                   </div>
                   <div className="text-xs text-surface-200 leading-relaxed whitespace-pre-wrap font-sans">
                     {result.ai_feedback}

@@ -149,6 +149,7 @@ JUDGE_TEMP_DIR = BASE_DIR / 'temp_submissions'
 JUDGE_DEFAULT_TIME_LIMIT_MS = 2000
 JUDGE_DEFAULT_MEMORY_LIMIT_KB = 262144  # 256MB
 
-# Gemini API Configuration
-GEMINI_API_KEY = config('GEMINI_API_KEY', default='')
+# OpenAI API Configuration
+OPENAI_API_KEY = config('OPENAI_API_KEY', default='')
+
 
