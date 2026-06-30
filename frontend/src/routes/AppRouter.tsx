@@ -76,7 +76,7 @@ export default function AppRouter() {
         <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="problems" element={<ProblemListPage />} />
+          <Route path="problems" element={<AdminRoute><ProblemListPage /></AdminRoute>} />
           <Route path="problems/:id" element={<ProblemDetailPage />} />
           <Route path="contests" element={<ContestListPage />} />
           <Route path="contests/:id" element={<ContestDetailPage />} />

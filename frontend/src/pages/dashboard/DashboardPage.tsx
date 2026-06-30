@@ -60,12 +60,22 @@ export default function DashboardPage() {
     RE: 'text-verdict-re', CE: 'text-verdict-ce', pending: 'text-verdict-pending',
   };
 
+  const isAdmin = (user as any)?.role === 'admin' || user?.role_name === 'admin';
+  const isCoach = (user as any)?.role === 'coach' || user?.role_name === 'coach';
+
   const statCards = [
     { label: 'Problemas', value: stats.problems, icon: IconCode, gradient: 'from-primary-600/20 to-primary-500/5', accent: 'text-primary-400', link: '/problems' },
     { label: 'Competencias', value: stats.contests, icon: IconTrophy, gradient: 'from-accent-600/20 to-accent-500/5', accent: 'text-accent-400', link: '/contests' },
     { label: 'Mis Envíos', value: stats.submissions, icon: IconSend, gradient: 'from-emerald-600/20 to-emerald-500/5', accent: 'text-emerald-400', link: '/submissions' },
     { label: 'Equipos', value: stats.teams, icon: IconUsers, gradient: 'from-violet-600/20 to-violet-500/5', accent: 'text-violet-400', link: '/teams' },
   ];
+
+  const visibleCards = statCards.filter((card) => {
+    if (card.label === 'Problemas') {
+      return isAdmin || isCoach;
+    }
+    return true;
+  });
 
   if (loading) return <Spinner />;
 
@@ -78,8 +88,8 @@ export default function DashboardPage() {
       />
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {statCards.map((card) => {
+      <div className={`grid grid-cols-2 ${isAdmin || isCoach ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-4`}>
+        {visibleCards.map((card) => {
           const Icon = card.icon;
           return (
             <Link key={card.label} to={card.link} className="card-hover group">

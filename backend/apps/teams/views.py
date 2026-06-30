@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Team, TeamMember
 from .serializers import TeamSerializer, TeamCreateSerializer, TeamMemberSerializer
-from apps.users.permissions import IsCoachOrAdmin
+from apps.users.permissions import IsCoachOrAdmin, IsOwnerOrAdmin
 
 
 class TeamViewSet(viewsets.ModelViewSet):
@@ -19,7 +19,9 @@ class TeamViewSet(viewsets.ModelViewSet):
         return TeamSerializer
 
     def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+        if self.action in ['update', 'partial_update', 'destroy', 'add_member', 'remove_member']:
+            return [IsAuthenticated(), IsCoachOrAdmin(), IsOwnerOrAdmin()]
+        if self.action == 'create':
             return [IsAuthenticated(), IsCoachOrAdmin()]
         return [IsAuthenticated()]
 

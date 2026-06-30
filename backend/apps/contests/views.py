@@ -83,23 +83,52 @@ class ContestViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+        if request.user.is_admin or request.user.is_coach:
+            return Response(
+                {'error': 'Los entrenadores y administradores no pueden registrarse en competencias.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+
+        user_team = None
+        if contest.mode == 'team':
+            from apps.teams.models import TeamMember
+            membership = TeamMember.objects.filter(user=request.user, team__is_active=True).first()
+            if not membership:
+                return Response(
+                    {'error': 'Para participar en una competencia por equipos debes pertenecer a un equipo activo.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            user_team = membership.team
+
         participant, created = ContestParticipant.objects.get_or_create(
             contest=contest,
             user=request.user,
-            defaults={'team': None}
+            defaults={'team': user_team}
         )
 
         if not created:
+            if participant.team != user_team:
+                participant.team = user_team
+                participant.save()
             return Response(
                 {'message': 'Ya estás registrado en esta competencia.'},
                 status=status.HTTP_200_OK
             )
 
         # Crear entrada de ranking
-        Ranking.objects.get_or_create(
-            contest=contest,
-            user=request.user,
-        )
+        if contest.mode == 'team':
+            Ranking.objects.get_or_create(
+                contest=contest,
+                team=user_team,
+                user=None
+            )
+        else:
+            Ranking.objects.get_or_create(
+                contest=contest,
+                user=request.user,
+                team=None
+            )
 
         return Response(
             {'message': 'Registrado exitosamente.'},
@@ -146,3 +175,67 @@ class ContestViewSet(viewsets.ModelViewSet):
         ).select_related('user', 'team')
         serializer = ContestParticipantSerializer(participants, many=True)
         return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def register_team(self, request, pk=None):
+        """Registrar un equipo completo en la competencia (por Coach o Admin)."""
+        contest = self.get_object()
+        if not (request.user.is_admin or request.user.is_coach):
+            return Response(
+                {'error': 'No tiene permisos para registrar equipos.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        if contest.mode != 'team':
+            return Response(
+                {'error': 'Esta competencia no es en modalidad de equipos.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        team_id = request.data.get('team_id')
+        if not team_id:
+            return Response(
+                {'error': 'team_id es requerido.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        from apps.teams.models import Team, TeamMember
+        try:
+            team = Team.objects.get(id=team_id)
+        except Team.DoesNotExist:
+            return Response(
+                {'error': 'El equipo seleccionado no existe.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+            
+        # Un coach solo puede registrar equipos de los cuales es coach (el admin puede registrar cualquiera)
+        if request.user.is_coach and not request.user.is_admin and team.coach != request.user:
+            return Response(
+                {'error': 'No puedes registrar equipos de los cuales no eres coach.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+            
+        members = TeamMember.objects.filter(team=team)
+        if not members.exists():
+            return Response(
+                {'error': 'El equipo no tiene miembros registrados.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+        # Registrar a cada miembro
+        for m in members:
+            ContestParticipant.objects.get_or_create(
+                contest=contest,
+                user=m.user,
+                defaults={'team': team}
+            )
+            
+        # Registrar entrada en Ranking
+        Ranking.objects.get_or_create(
+            contest=contest,
+            team=team,
+            user=None
+        )
+        
+        return Response(
+            {'message': f'Equipo "{team.name}" registrado exitosamente.'},
+            status=status.HTTP_201_CREATED
+        )

@@ -29,7 +29,7 @@ class ContestListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'description', 'start_time', 'end_time',
             'status', 'status_display', 'created_by', 'created_by_name',
-            'is_public', 'scoring_type', 'participant_count', 'is_registered', 'created_at'
+            'is_public', 'scoring_type', 'mode', 'participant_count', 'is_registered', 'created_at'
         ]
 
     def get_created_by_name(self, obj):
@@ -42,6 +42,8 @@ class ContestListSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if not request or not request.user or request.user.is_anonymous:
             return False
+        if request.user.is_admin or request.user.is_coach:
+            return True
         return obj.participants.filter(user=request.user).exists()
 
 
@@ -58,7 +60,7 @@ class ContestDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'description', 'start_time', 'end_time',
             'status', 'status_display', 'created_by', 'created_by_name',
-            'is_public', 'scoring_type', 'penalty_time',
+            'is_public', 'scoring_type', 'penalty_time', 'mode',
             'problems', 'participant_count', 'is_registered', 'created_at'
         ]
 
@@ -72,6 +74,8 @@ class ContestDetailSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if not request or not request.user or request.user.is_anonymous:
             return False
+        if request.user.is_admin or request.user.is_coach:
+            return True
         return obj.participants.filter(user=request.user).exists()
 
 
@@ -82,7 +86,7 @@ class ContestCreateSerializer(serializers.ModelSerializer):
         model = Contest
         fields = [
             'id', 'title', 'description', 'start_time', 'end_time',
-            'is_public', 'scoring_type', 'penalty_time'
+            'is_public', 'scoring_type', 'penalty_time', 'mode'
         ]
         read_only_fields = ['id']
 
@@ -107,20 +111,44 @@ class ContestParticipantSerializer(serializers.ModelSerializer):
 
 class RankingSerializer(serializers.ModelSerializer):
     """Serializer para ranking de competencia."""
-    username = serializers.CharField(source='user.username', read_only=True)
+    username = serializers.SerializerMethodField()
     full_name = serializers.SerializerMethodField()
     team_name = serializers.SerializerMethodField()
+    members_breakdown = serializers.SerializerMethodField()
 
     class Meta:
         model = Ranking
         fields = [
             'id', 'user', 'username', 'full_name', 'team', 'team_name',
             'solved_count', 'total_penalty', 'score', 'rank_position',
-            'last_accepted_at'
+            'last_accepted_at', 'members_breakdown'
         ]
 
+    def get_username(self, obj):
+        return obj.user.username if obj.user else None
+
     def get_full_name(self, obj):
-        return obj.user.get_full_name()
+        return obj.user.get_full_name() if obj.user else None
 
     def get_team_name(self, obj):
         return obj.team.name if obj.team else None
+
+    def get_members_breakdown(self, obj):
+        if not obj.team:
+            return []
+        from apps.teams.models import TeamMember
+        from apps.submissions.models import Submission
+        members = TeamMember.objects.filter(team=obj.team).select_related('user')
+        breakdown = []
+        for m in members:
+            solved = Submission.objects.filter(
+                user=m.user,
+                contest=obj.contest,
+                verdict='AC'
+            ).values('problem').distinct().count()
+            breakdown.append({
+                'username': m.user.username,
+                'full_name': m.user.get_full_name() or m.user.username,
+                'solved_count': solved
+            })
+        return breakdown

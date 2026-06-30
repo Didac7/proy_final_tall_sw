@@ -17,12 +17,13 @@ import {
   BarChart, Bar, Cell, PieChart, Pie, Legend
 } from 'recharts';
 
-type ActiveTab = 'stats' | 'problems' | 'contests' | 'teams' | 'users';
+type ActiveTab = 'stats' | 'problems' | 'contests' | 'trainings' | 'teams' | 'users';
 
 export default function AdminDashboardPage() {
   const { user } = useAuth();
   const isAdmin = (user as any)?.role === 'admin' || user?.role_name === 'admin';
   const isCoach = (user as any)?.role === 'coach' || user?.role_name === 'coach';
+  const canManageTeam = (t: any) => isAdmin || String(user?.id) === String(t.coach);
 
   // State
   const [activeTab, setActiveTab] = useState<ActiveTab>('problems');
@@ -55,7 +56,8 @@ export default function AdminDashboardPage() {
   const [showContestModal, setShowContestModal] = useState(false);
   const [contestForm, setContestForm] = useState({
     title: '', description: '', start_time: '', end_time: '',
-    scoring_type: 'icpc', penalty_time: 20, is_public: true
+    scoring_type: 'icpc', penalty_time: 20, is_public: true,
+    mode: 'individual'
   });
 
   // Contest problems state
@@ -71,9 +73,22 @@ export default function AdminDashboardPage() {
   const [teamForm, setTeamForm] = useState({
     name: '', coach: ''
   });
+  const canManageEditingTeam = editingTeam ? canManageTeam(editingTeam) : true;
 
   // Team members
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  // Trainings CRUD
+  const [trainingsList, setTrainingsList] = useState<any[]>([]);
+  const [editingTraining, setEditingTraining] = useState<any>(null);
+  const [showTrainingModal, setShowTrainingModal] = useState(false);
+  const [trainingForm, setTrainingForm] = useState({
+    title: '', description: '', start_date: '', end_date: '',
+    status: 'draft', is_public: true
+  });
+  const [trainingProblems, setTrainingProblems] = useState<any[]>([]);
+  const [newTrainingProblem, setNewTrainingProblem] = useState({
+    problem: '', order: 0
+  });
   const [newTeamMember, setNewTeamMember] = useState({
     user_id: '', role: 'member'
   });
@@ -91,6 +106,7 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     if (activeTab === 'problems') loadProblems();
     if (activeTab === 'contests') loadContests();
+    if (activeTab === 'trainings') loadTrainings();
     if (activeTab === 'teams') {
       loadTeams();
       loadUsersList(); // For adding members
@@ -208,6 +224,88 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Trainings API
+  const loadTrainings = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get('/trainings/');
+      setTrainingsList(res.data.results || res.data || []);
+    } catch { /* empty */ }
+    setLoading(false);
+  };
+
+  const handleCreateOrUpdateTraining = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (editingTraining) {
+        await api.put(`/trainings/${editingTraining.id}/`, trainingForm);
+      } else {
+        await api.post('/trainings/', trainingForm);
+      }
+      setShowTrainingModal(false);
+      setEditingTraining(null);
+      loadTrainings();
+    } catch (err: any) {
+      alert(JSON.stringify(err.response?.data) || 'Error al guardar el entrenamiento.');
+    }
+  };
+
+  const handleEditTraining = async (training: any) => {
+    setEditingTraining(training);
+    const fmtDate = (dStr: string) => {
+      if (!dStr) return '';
+      const d = new Date(dStr);
+      const pad = (n: number) => n.toString().padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    setTrainingForm({
+      title: training.title, description: training.description || '',
+      start_date: fmtDate(training.start_date), end_date: fmtDate(training.end_date),
+      status: training.status, is_public: training.is_public
+    });
+    setTrainingProblems([]);
+    setShowTrainingModal(true);
+
+    setLoadingModalData(true);
+    try {
+      const tRes = await api.get(`/trainings/${training.id}/`);
+      setTrainingProblems(tRes.data.problems || []);
+      
+      if (problems.length === 0) {
+        const genRes = await api.get('/problems/');
+        setProblems(genRes.data.results || genRes.data || []);
+      }
+    } catch { /* empty */ }
+    setLoadingModalData(false);
+  };
+
+  const deleteTraining = async (tId: number) => {
+    if (!window.confirm('¿Estás seguro de eliminar este entrenamiento?')) return;
+    try {
+      await api.delete(`/trainings/${tId}/`);
+      loadTrainings();
+    } catch {
+      alert('Error al eliminar el entrenamiento.');
+    }
+  };
+
+  const handleAddTrainingProblem = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTrainingProblem.problem || !editingTraining) return;
+    try {
+      await api.post(`/trainings/${editingTraining.id}/add_problem/`, {
+        problem_id: Number(newTrainingProblem.problem),
+        order: Number(newTrainingProblem.order)
+      });
+      setNewTrainingProblem({ problem: '', order: 0 });
+      // Reload problems
+      const tRes = await api.get(`/trainings/${editingTraining.id}/`);
+      setTrainingProblems(tRes.data.problems || []);
+    } catch {
+      alert('Error al agregar el problema al entrenamiento.');
+    }
+  };
+
   const handleEditContest = async (contest: any) => {
     setEditingContest(contest);
     // Format dates for input datetime-local (YYYY-MM-DDThh:mm)
@@ -222,7 +320,7 @@ export default function AdminDashboardPage() {
       title: contest.title, description: contest.description || '',
       start_time: fmtDate(contest.start_time), end_time: fmtDate(contest.end_time),
       scoring_type: contest.scoring_type, penalty_time: contest.penalty_time,
-      is_public: contest.is_public
+      is_public: contest.is_public, mode: contest.mode || 'individual'
     });
     setContestProblems([]);
     setShowContestModal(true);
@@ -279,6 +377,16 @@ export default function AdminDashboardPage() {
       loadTeams();
     } catch {
       alert('Error al guardar el equipo.');
+    }
+  };
+
+  const deleteTeam = async (teamId: number) => {
+    if (!window.confirm('¿Estás seguro de eliminar este equipo de forma permanente?')) return;
+    try {
+      await api.delete(`/teams/${teamId}/`);
+      loadTeams();
+    } catch {
+      alert('Error al eliminar el equipo.');
     }
   };
 
@@ -393,6 +501,7 @@ export default function AdminDashboardPage() {
     { id: 'stats', label: 'Estadísticas Globales', icon: <IconDashboard className="w-4 h-4" />, visible: isAdmin },
     { id: 'problems', label: 'Banco de Problemas', icon: <IconCode className="w-4 h-4" />, visible: true },
     { id: 'contests', label: 'Competencias', icon: <IconTrophy className="w-4 h-4" />, visible: true },
+    { id: 'trainings', label: 'Entrenamientos', icon: <IconTarget className="w-4 h-4" />, visible: isAdmin || isCoach },
     { id: 'teams', label: 'Equipos / Grupos', icon: <IconUsers className="w-4 h-4" />, visible: true },
     { id: 'users', label: 'Control de Usuarios', icon: <IconUser className="w-4 h-4" />, visible: isAdmin },
   ];
@@ -644,7 +753,8 @@ export default function AdminDashboardPage() {
                     setEditingContest(null);
                     setContestForm({
                       title: '', description: '', start_time: '', end_time: '',
-                      scoring_type: 'icpc', penalty_time: 20, is_public: true
+                      scoring_type: 'icpc', penalty_time: 20, is_public: true,
+                      mode: 'individual'
                     });
                     setContestProblems([]);
                     setShowContestModal(true);
@@ -662,6 +772,7 @@ export default function AdminDashboardPage() {
                     <tr>
                       <th className="w-16">ID</th>
                       <th>Título</th>
+                      <th>Modalidad</th>
                       <th>Horario</th>
                       <th>Reglas</th>
                       <th className="w-24 text-center">Estado</th>
@@ -673,6 +784,17 @@ export default function AdminDashboardPage() {
                       <tr key={c.id}>
                         <td className="font-mono text-xs text-surface-500">#{c.id}</td>
                         <td className="font-semibold text-sm text-surface-200">{c.title}</td>
+                        <td className="text-xs text-surface-300">
+                          {c.mode === 'team' ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold">
+                              👥 Por Equipos
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold">
+                              👤 Individual
+                            </span>
+                          )}
+                        </td>
                         <td className="text-xs text-surface-400 font-display">
                           {new Date(c.start_time).toLocaleString('es-BO', { dateStyle: 'short', timeStyle: 'short' })} —{' '}
                           {new Date(c.end_time).toLocaleString('es-BO', { dateStyle: 'short', timeStyle: 'short' })}
@@ -693,6 +815,100 @@ export default function AdminDashboardPage() {
                         </td>
                       </tr>
                     ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* TAB: TRAININGS */}
+          {activeTab === 'trainings' && (
+            <div className="space-y-4 animate-fade-in">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-display font-bold text-surface-100">Gestión de Entrenamientos</h3>
+                  <p className="text-xs text-surface-400">Planes de estudio y sets de problemas organizados por temas y dificultad</p>
+                </div>
+                {isCoach && (
+                  <button
+                    onClick={() => {
+                      setEditingTraining(null);
+                      setTrainingForm({
+                        title: '', description: '', start_date: '', end_date: '',
+                        status: 'draft', is_public: true
+                      });
+                      setTrainingProblems([]);
+                      setShowTrainingModal(true);
+                    }}
+                    className="btn-primary flex items-center gap-1.5"
+                  >
+                    <IconTarget className="w-4 h-4" />
+                    <span>Nuevo Entrenamiento</span>
+                  </button>
+                )}
+              </div>
+
+              <div className="table-container">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th className="w-16">ID</th>
+                      <th>Título</th>
+                      <th>Estado</th>
+                      <th>Visibilidad</th>
+                      <th>Problemas</th>
+                      <th>Creado por</th>
+                      <th className="w-32 text-right">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {trainingsList.map((t) => (
+                      <tr key={t.id}>
+                        <td className="font-mono text-xs text-surface-500">#{t.id}</td>
+                        <td className="font-semibold text-sm text-surface-200">{t.title}</td>
+                        <td>
+                          <span className={`badge text-[9px] uppercase tracking-wider ${
+                            t.status === 'active' 
+                              ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                              : t.status === 'finished' 
+                              ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                              : 'bg-surface-800 text-surface-450 border border-surface-700'
+                          }`}>
+                            {t.status_display}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={`badge text-[9px] uppercase tracking-wider ${t.is_public ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
+                            {t.is_public ? 'Público' : 'Privado'}
+                          </span>
+                        </td>
+                        <td className="text-xs text-surface-400">{t.problem_count} problemas</td>
+                        <td className="text-xs text-surface-400">{t.created_by_name}</td>
+                        <td className="text-right space-x-2">
+                          <button
+                            onClick={() => handleEditTraining(t)}
+                            className="text-primary-400 hover:text-primary-300 font-semibold text-xs transition-colors"
+                          >
+                            {isCoach ? 'Editar' : 'Visualizar'}
+                          </button>
+                          {isCoach && (
+                            <button
+                              onClick={() => deleteTraining(t.id)}
+                              className="text-red-400 hover:text-red-300 font-semibold text-xs transition-colors"
+                            >
+                              Eliminar
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                    {trainingsList.length === 0 && (
+                      <tr>
+                        <td colSpan={7} className="text-center py-8 text-surface-500">
+                          No hay entrenamientos creados.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -729,9 +945,23 @@ export default function AdminDashboardPage() {
                         <p className="text-xs text-surface-400 mb-2">🎓 Coach: <span className="font-semibold text-surface-200">{t.coach_name}</span></p>
                       )}
                     </div>
-                    <button onClick={() => handleEditTeam(t)} className="btn-secondary btn-sm mt-4 text-center">
-                      Gestionar Equipo
-                    </button>
+                    <div className="flex gap-2 mt-4">
+                      <button
+                        onClick={() => handleEditTeam(t)}
+                        className="btn-secondary btn-sm flex-1 text-center"
+                      >
+                        {canManageTeam(t) ? 'Gestionar' : 'Ver Miembros'}
+                      </button>
+                      {canManageTeam(t) && (
+                        <button
+                          onClick={() => deleteTeam(t.id)}
+                          className="btn-secondary btn-sm bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3 py-1 rounded transition-colors"
+                          title="Eliminar Equipo"
+                        >
+                          Eliminar
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -834,7 +1064,7 @@ export default function AdminDashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Form Side */}
-              <form onSubmit={handleCreateOrUpdateProblem} className="lg:col-span-7 space-y-4">
+              <form onSubmit={handleCreateOrUpdateProblem} className="lg:col-span-12 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1 sm:col-span-2">
                     <label className="text-xs text-surface-400 font-display font-semibold">Título del Problema</label>
@@ -905,66 +1135,6 @@ export default function AdminDashboardPage() {
                 </button>
               </form>
 
-              {/* Test Cases Manager (only if problem is already created/editing) */}
-              <div className="lg:col-span-5 border-l border-surface-850 pl-0 lg:pl-6 space-y-4">
-                <h4 className="font-display font-bold text-surface-200 text-sm border-b border-surface-850 pb-2">
-                  Gestión de Casos del Juez (Test Cases)
-                </h4>
-
-                {editingProblem ? (
-                  <>
-                    {loadingModalData ? (
-                      <div className="flex justify-center py-6"><Spinner size="sm" /></div>
-                    ) : (
-                      <div className="space-y-4 max-h-[350px] overflow-y-auto pr-1">
-                        {testCases.map((tc, index) => (
-                          <div key={tc.id || index} className="p-3 bg-surface-900 rounded-xl border border-surface-850 space-y-1.5 text-[11px]">
-                            <div className="flex items-center justify-between">
-                              <span className="font-bold text-primary-400">Prueba #{index + 1} {tc.is_sample && '💡 (Ejemplo)'}</span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 font-mono text-[10px]">
-                              <div><span className="text-surface-555">Input:</span> <pre className="bg-surface-950 p-1 rounded border border-surface-800 overflow-x-auto truncate">{tc.input_data}</pre></div>
-                              <div><span className="text-surface-555">Expected:</span> <pre className="bg-surface-950 p-1 rounded border border-surface-800 overflow-x-auto truncate">{tc.expected_output}</pre></div>
-                            </div>
-                          </div>
-                        ))}
-                        {testCases.length === 0 && (
-                          <p className="text-xs text-surface-500 italic">No hay casos de evaluación cargados para este problema. Agrega uno abajo.</p>
-                        )}
-                      </div>
-                    )}
-
-                    {/* New test case form */}
-                    <div className="p-3 bg-surface-900/60 rounded-2xl border border-surface-800 space-y-3">
-                      <p className="text-xs font-bold font-display text-surface-300">Cargar Nueva Prueba de Evaluación</p>
-                      
-                      <div className="space-y-1">
-                        <label className="text-[10px] text-surface-500 uppercase tracking-widest font-semibold font-display">Entrada de Prueba (Input)</label>
-                        <textarea rows={2} className="input text-xs font-mono bg-surface-950 border-surface-850 text-emerald-400" value={newTestCase.input_data} onChange={(e) => setNewTestCase({ ...newTestCase, input_data: e.target.value })} />
-                      </div>
-                      
-                      <div className="space-y-1">
-                        <label className="text-[10px] text-surface-500 uppercase tracking-widest font-semibold font-display">Salida Esperada (Expected Output)</label>
-                        <textarea rows={2} className="input text-xs font-mono bg-surface-950 border-surface-850 text-amber-400" value={newTestCase.expected_output} onChange={(e) => setNewTestCase({ ...newTestCase, expected_output: e.target.value })} />
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <label className="flex items-center gap-1.5 text-xs text-surface-400 cursor-pointer">
-                          <input type="checkbox" checked={newTestCase.is_sample} onChange={(e) => setNewTestCase({ ...newTestCase, is_sample: e.target.checked })} />
-                          <span>Es de Ejemplo</span>
-                        </label>
-                        <button type="button" onClick={handleAddTestCase} className="px-3 py-1.5 bg-primary-600 hover:bg-primary-500 text-white font-semibold text-xs rounded-xl shadow-md transition-all">
-                          ＋ Cargar Caso
-                        </button>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-4 bg-surface-900 rounded-2xl text-center text-xs text-surface-555">
-                    Guarda primero los datos generales del problema para poder cargar las pruebas de evaluación del juez automático.
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -1010,7 +1180,14 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs text-surface-400 font-display font-semibold">Modalidad</label>
+                    <select className="input" value={contestForm.mode} onChange={(e) => setContestForm({ ...contestForm, mode: e.target.value })}>
+                      <option value="individual">Individual</option>
+                      <option value="team">Por Equipos</option>
+                    </select>
+                  </div>
                   <div className="space-y-1">
                     <label className="text-xs text-surface-400 font-display font-semibold">Scoring Rules</label>
                     <select className="input" value={contestForm.scoring_type} onChange={(e) => setContestForm({ ...contestForm, scoring_type: e.target.value })}>
@@ -1019,7 +1196,7 @@ export default function AdminDashboardPage() {
                     </select>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs text-surface-400 font-display font-semibold">Penalización ICPC (minutos por fallo)</label>
+                    <label className="text-xs text-surface-400 font-display font-semibold">Penalización ICPC (minutos)</label>
                     <input type="number" className="input" value={contestForm.penalty_time} onChange={(e) => setContestForm({ ...contestForm, penalty_time: Number(e.target.value) })} />
                   </div>
                 </div>
@@ -1081,17 +1258,6 @@ export default function AdminDashboardPage() {
                         </select>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <label htmlFor="problem-label-input" className="text-[10px] text-surface-500 font-semibold font-display">Letra / Etiqueta</label>
-                          <input id="problem-label-input" type="text" className="input text-xs font-mono" value={newContestProblem.label} onChange={(e) => setNewContestProblem({ ...newContestProblem, label: e.target.value })} />
-                        </div>
-                        <div className="space-y-1">
-                          <label htmlFor="problem-order-input" className="text-[10px] text-surface-500 font-semibold font-display">Orden numérico</label>
-                          <input id="problem-order-input" type="number" className="input text-xs font-mono" value={newContestProblem.order} onChange={(e) => setNewContestProblem({ ...newContestProblem, order: Number(e.target.value) })} />
-                        </div>
-                      </div>
-
                       <button type="button" onClick={handleAddContestProblem} className="btn-primary w-full py-1.5 text-xs">
                         ＋ Vincular Problema al Torneo
                       </button>
@@ -1100,6 +1266,186 @@ export default function AdminDashboardPage() {
                 ) : (
                   <div className="p-4 bg-surface-900 rounded-2xl text-center text-xs text-surface-555">
                     Guarda primero los datos de la competencia para poder asignarle problemas.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── MODAL: TRAININGS ────────────────────────── */}
+      {showTrainingModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-surface-950 border border-surface-800 rounded-2xl w-full max-w-4xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6">
+            <button
+              onClick={() => setShowTrainingModal(false)}
+              className="absolute right-4 top-4 text-surface-400 hover:text-surface-200 transition-colors"
+            >
+              <IconClose className="w-5 h-5" />
+            </button>
+
+            <div className="border-b border-surface-850 pb-3">
+              <h3 className="text-xl font-display font-extrabold text-surface-100">
+                {isCoach 
+                  ? (editingTraining ? `Editar Entrenamiento #${editingTraining.id}` : 'Crear Nuevo Entrenamiento') 
+                  : `Visualizar Entrenamiento #${editingTraining?.id}`}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              {/* Training Form */}
+              <form onSubmit={handleCreateOrUpdateTraining} className="lg:col-span-7 space-y-4">
+                <div className="space-y-1">
+                  <label className="text-xs text-surface-400 font-display font-semibold">Título del Entrenamiento</label>
+                  <input
+                    required
+                    disabled={!isCoach}
+                    type="text"
+                    className="input"
+                    value={trainingForm.title}
+                    onChange={(e) => setTrainingForm({ ...trainingForm, title: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs text-surface-400 font-display font-semibold">Descripción</label>
+                  <textarea
+                    rows={3}
+                    disabled={!isCoach}
+                    className="input text-sm"
+                    value={trainingForm.description}
+                    onChange={(e) => setTrainingForm({ ...trainingForm, description: e.target.value })}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs text-surface-400 font-display font-semibold">Fecha de Inicio (Opcional)</label>
+                    <input
+                      disabled={!isCoach}
+                      type="datetime-local"
+                      className="input text-xs font-mono"
+                      value={trainingForm.start_date}
+                      onChange={(e) => setTrainingForm({ ...trainingForm, start_date: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-surface-400 font-display font-semibold">Fecha de Fin (Opcional)</label>
+                    <input
+                      disabled={!isCoach}
+                      type="datetime-local"
+                      className="input text-xs font-mono"
+                      value={trainingForm.end_date}
+                      onChange={(e) => setTrainingForm({ ...trainingForm, end_date: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs text-surface-400 font-display font-semibold">Estado</label>
+                    <select
+                      disabled={!isCoach}
+                      className="input"
+                      value={trainingForm.status}
+                      onChange={(e) => setTrainingForm({ ...trainingForm, status: e.target.value })}
+                    >
+                      <option value="draft">Borrador</option>
+                      <option value="active">Activo</option>
+                      <option value="finished">Finalizado</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-surface-400 font-display font-semibold">Visibilidad</label>
+                    <select
+                      disabled={!isCoach}
+                      className="input"
+                      value={trainingForm.is_public ? 'public' : 'private'}
+                      onChange={(e) => setTrainingForm({ ...trainingForm, is_public: e.target.value === 'public' })}
+                    >
+                      <option value="public">Público</option>
+                      <option value="private">Privado</option>
+                    </select>
+                  </div>
+                </div>
+
+                {isCoach && (
+                  <button type="submit" className="btn-primary w-full py-2.5 shadow-lg shadow-primary-500/10">
+                    {editingTraining ? '💾 Guardar Cambios' : '🎯 Lanzar Entrenamiento'}
+                  </button>
+                )}
+              </form>
+
+              {/* Problems Connector */}
+              <div className="lg:col-span-5 border-l border-surface-850 pl-0 lg:pl-6 space-y-4">
+                <h4 className="font-display font-bold text-surface-200 text-sm border-b border-surface-850 pb-2">
+                  Problemas del Entrenamiento
+                </h4>
+
+                {editingTraining ? (
+                  <>
+                    {loadingModalData ? (
+                      <div className="flex justify-center py-6"><Spinner size="sm" /></div>
+                    ) : (
+                      <div className="space-y-2.5 max-h-[250px] overflow-y-auto pr-1">
+                        {trainingProblems.map((tp) => (
+                          <div key={tp.id} className="flex items-center justify-between p-2.5 bg-surface-900 border border-surface-850 rounded-xl text-xs font-display">
+                            <div className="flex items-center gap-3">
+                              <span className="font-bold text-accent-400 font-mono text-xs bg-surface-950/40 px-1.5 py-0.5 rounded">
+                                Ord {tp.order}
+                              </span>
+                              <span className="text-surface-200 font-semibold">{tp.problem_detail?.title || `Problema #${tp.problem}`}</span>
+                            </div>
+                          </div>
+                        ))}
+                        {trainingProblems.length === 0 && (
+                          <p className="text-xs text-surface-500 italic">No hay problemas vinculados a este entrenamiento todavía.</p>
+                        )}
+                      </div>
+                    )}
+
+                    {isCoach && (
+                      <form onSubmit={handleAddTrainingProblem} className="p-3 bg-surface-900/60 rounded-2xl border border-surface-800 space-y-3">
+                        <p className="text-xs font-bold font-display text-surface-300">Vincular Nuevo Problema</p>
+                        
+                        <div className="space-y-1">
+                          <label htmlFor="training-problem-select" className="text-[10px] text-surface-500 font-semibold font-display">Seleccionar Problema</label>
+                          <select
+                            id="training-problem-select"
+                            required
+                            className="input text-xs"
+                            value={newTrainingProblem.problem}
+                            onChange={(e) => setNewTrainingProblem({ ...newTrainingProblem, problem: e.target.value })}
+                          >
+                            <option value="">Elige un problema...</option>
+                            {problems.map((p) => (
+                              <option key={p.id} value={p.id}>[{p.difficulty.toUpperCase()}] {p.title}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="space-y-1">
+                          <label htmlFor="training-problem-order" className="text-[10px] text-surface-500 font-semibold font-display">Orden en el plan</label>
+                          <input
+                            id="training-problem-order"
+                            type="number"
+                            className="input text-xs"
+                            value={newTrainingProblem.order}
+                            onChange={(e) => setNewTrainingProblem({ ...newTrainingProblem, order: Number(e.target.value) })}
+                          />
+                        </div>
+
+                        <button type="submit" className="btn-primary w-full py-1.5 text-xs">
+                          ＋ Vincular Problema al Plan
+                        </button>
+                      </form>
+                    )}
+                  </>
+                ) : (
+                  <div className="p-4 bg-surface-900 rounded-2xl text-center text-xs text-surface-555">
+                    {isCoach 
+                      ? 'Guarda primero el entrenamiento para poder asignarle problemas.' 
+                      : 'No hay problemas asociados.'}
                   </div>
                 )}
               </div>
@@ -1130,13 +1476,21 @@ export default function AdminDashboardPage() {
               <form onSubmit={handleCreateOrUpdateTeam} className="lg:col-span-6 space-y-4">
                 <div className="space-y-1">
                   <label className="text-xs text-surface-400 font-display font-semibold">Nombre del Equipo</label>
-                  <input required type="text" className="input" value={teamForm.name} onChange={(e) => setTeamForm({ ...teamForm, name: e.target.value })} />
+                  <input
+                    required
+                    disabled={!canManageEditingTeam}
+                    type="text"
+                    className="input"
+                    value={teamForm.name}
+                    onChange={(e) => setTeamForm({ ...teamForm, name: e.target.value })}
+                  />
                 </div>
                 
                 <div className="space-y-1">
                   <label htmlFor="team-coach-select" className="text-xs text-surface-400 font-display font-semibold">Asignar Coach (Docente / Entrenador)</label>
                   <select
                     id="team-coach-select"
+                    disabled={!canManageEditingTeam}
                     className="input text-sm"
                     value={teamForm.coach}
                     onChange={(e) => setTeamForm({ ...teamForm, coach: e.target.value })}
@@ -1148,9 +1502,11 @@ export default function AdminDashboardPage() {
                   </select>
                 </div>
 
-                <button type="submit" className="btn-primary w-full py-2">
-                  {editingTeam ? '💾 Actualizar Datos del Equipo' : '🚀 Crear Equipo'}
-                </button>
+                {canManageEditingTeam && (
+                  <button type="submit" className="btn-primary w-full py-2">
+                    {editingTeam ? '💾 Actualizar Datos del Equipo' : '🚀 Crear Equipo'}
+                  </button>
+                )}
               </form>
 
               {/* Members Manager Side */}
@@ -1168,9 +1524,11 @@ export default function AdminDashboardPage() {
                             <span className="text-surface-200 font-bold block">{m.full_name || m.username}</span>
                             <span className="text-surface-500 font-mono text-[9px] uppercase">{m.role_display}</span>
                           </div>
-                          <button type="button" onClick={() => handleRemoveTeamMember(m.user)} className="text-red-400 hover:text-red-300 font-semibold">
-                            Remover
-                          </button>
+                          {canManageEditingTeam && (
+                            <button type="button" onClick={() => handleRemoveTeamMember(m.user)} className="text-red-400 hover:text-red-300 font-semibold font-display">
+                              Remover
+                            </button>
+                          )}
                         </div>
                       ))}
                       {teamMembers.length === 0 && (
@@ -1179,41 +1537,43 @@ export default function AdminDashboardPage() {
                     </div>
 
                     {/* Member connector */}
-                    <div className="p-3 bg-surface-900/60 rounded-2xl border border-surface-800 space-y-3">
-                      <p className="text-xs font-bold font-display text-surface-300">Vincular Alumno</p>
-                      
-                      <div className="space-y-1">
-                        <label htmlFor="member-add-select" className="text-[10px] text-surface-500 font-semibold font-display">Seleccionar Alumno</label>
-                        <select
-                          id="member-add-select"
-                          className="input text-xs"
-                          value={newTeamMember.user_id}
-                          onChange={(e) => setNewTeamMember({ ...newTeamMember, user_id: e.target.value })}
-                        >
-                          <option value="">Elige un estudiante...</option>
-                          {usersList.map((u) => (
-                            <option key={u.id} value={u.id}>@{u.username} — {u.first_name} {u.last_name}</option>
-                          ))}
-                        </select>
-                      </div>
+                    {canManageEditingTeam && (
+                      <div className="p-3 bg-surface-900/60 rounded-2xl border border-surface-800 space-y-3">
+                        <p className="text-xs font-bold font-display text-surface-300">Vincular Alumno</p>
+                        
+                        <div className="space-y-1">
+                          <label htmlFor="member-add-select" className="text-[10px] text-surface-500 font-semibold font-display">Seleccionar Alumno</label>
+                          <select
+                            id="member-add-select"
+                            className="input text-xs"
+                            value={newTeamMember.user_id}
+                            onChange={(e) => setNewTeamMember({ ...newTeamMember, user_id: e.target.value })}
+                          >
+                            <option value="">Elige un estudiante...</option>
+                            {usersList.map((u) => (
+                              <option key={u.id} value={u.id}>@{u.username} — {u.first_name} {u.last_name}</option>
+                            ))}
+                          </select>
+                        </div>
 
-                      <div className="space-y-1">
-                        <label htmlFor="member-role-select" className="text-[10px] text-surface-500 font-semibold font-display">Rol en el Equipo</label>
-                        <select
-                          id="member-role-select"
-                          className="input text-xs"
-                          value={newTeamMember.role}
-                          onChange={(e) => setNewTeamMember({ ...newTeamMember, role: e.target.value })}
-                        >
-                          <option value="member">Titular</option>
-                          <option value="alternate">Suplente</option>
-                        </select>
-                      </div>
+                        <div className="space-y-1">
+                          <label htmlFor="member-role-select" className="text-[10px] text-surface-500 font-semibold font-display">Rol en el Equipo</label>
+                          <select
+                            id="member-role-select"
+                            className="input text-xs"
+                            value={newTeamMember.role}
+                            onChange={(e) => setNewTeamMember({ ...newTeamMember, role: e.target.value })}
+                          >
+                            <option value="member">Titular</option>
+                            <option value="alternate">Suplente</option>
+                          </select>
+                        </div>
 
-                      <button type="button" onClick={handleAddTeamMember} className="btn-primary w-full py-1.5 text-xs">
-                        ＋ Agregar Alumno al Equipo
-                      </button>
-                    </div>
+                        <button type="button" onClick={handleAddTeamMember} className="btn-primary w-full py-1.5 text-xs">
+                          ＋ Agregar Alumno al Equipo
+                        </button>
+                      </div>
+                    )}
                   </>
                 ) : (
                   <div className="p-4 bg-surface-900 rounded-2xl text-center text-xs text-surface-555">

@@ -17,6 +17,12 @@ export default function ContestDetailPage() {
   const [tab, setTab] = useState<'info' | 'problems' | 'ranking'>('info');
   const [loading, setLoading] = useState(true);
   const [registering, setRegistering] = useState(false);
+  
+  // Team registration states
+  const [showRegisterTeamModal, setShowRegisterTeamModal] = useState(false);
+  const [teamsList, setTeamsList] = useState<any[]>([]);
+  const [selectedTeam, setSelectedTeam] = useState('');
+  const [registeringTeam, setRegisteringTeam] = useState(false);
 
   useEffect(() => {
     loadContest();
@@ -62,6 +68,39 @@ export default function ContestDetailPage() {
     }
   };
 
+  // Load teams when modal opens
+  useEffect(() => {
+    if (showRegisterTeamModal && teamsList.length === 0) {
+      loadTeams();
+    }
+  }, [showRegisterTeamModal, teamsList.length]);
+
+  const loadTeams = async () => {
+    try {
+      const res = await api.get('/teams/');
+      setTeamsList(res.data.results || res.data || []);
+    } catch { /* empty */ }
+  };
+
+  const handleRegisterTeamSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedTeam) return;
+    setRegisteringTeam(true);
+    try {
+      await api.post(`/contests/${id}/register_team/`, {
+        team_id: Number(selectedTeam)
+      });
+      alert('Equipo registrado exitosamente en la competencia.');
+      setShowRegisterTeamModal(false);
+      setSelectedTeam('');
+      loadContest();
+    } catch (err: any) {
+      alert(err.response?.data?.error || 'Error al registrar el equipo.');
+    } finally {
+      setRegisteringTeam(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -99,7 +138,14 @@ export default function ContestDetailPage() {
     { id: 'ranking', label: 'Ranking / Scoreboard', icon: <IconTrophy className="w-4 h-4" /> },
   ] as const;
 
+  const userRole = (user as any)?.role || user?.role_name;
+  const isAdminOrCoach = userRole === 'admin' || userRole === 'coach';
   const isUserRegistered = contest.is_registered;
+
+  const filteredTeams = teamsList.filter((t) => {
+    if (userRole === 'admin') return true;
+    return String(t.coach) === String(user?.id);
+  });
 
   return (
     <div className="space-y-6">
@@ -129,8 +175,24 @@ export default function ContestDetailPage() {
             </p>
           </div>
 
-          <div className="shrink-0">
-            {isUserRegistered ? (
+          <div className="shrink-0 flex flex-wrap items-center gap-3">
+            {isAdminOrCoach && contest.mode === 'team' && (
+              <button
+                onClick={() => setShowRegisterTeamModal(true)}
+                className="btn-primary py-2 px-4 flex items-center gap-1.5 shadow-lg shadow-primary-500/15"
+              >
+                <IconUsers className="w-4 h-4" />
+                <span>Registrar un Equipo</span>
+              </button>
+            )}
+            {isAdminOrCoach ? (
+              <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-xl text-xs font-display font-bold">
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                </svg>
+                {userRole === 'admin' ? 'Vista Administrador' : 'Vista Entrenador'}
+              </span>
+            ) : isUserRegistered ? (
               <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl text-xs font-display font-bold">
                 <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -227,7 +289,7 @@ export default function ContestDetailPage() {
 
       {tab === 'problems' && (
         <div className="animate-fade-in space-y-4">
-          {!isUserRegistered && (
+          {!isUserRegistered && !isAdminOrCoach && (
             <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-amber-400 text-xs font-display flex items-center gap-2.5">
               <svg className="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -253,7 +315,7 @@ export default function ContestDetailPage() {
                       {cp.label}
                     </td>
                     <td>
-                      {isUserRegistered ? (
+                      {isUserRegistered || isAdminOrCoach ? (
                         <Link
                           to={`/problems/${cp.problem}?contest=${id}`}
                           className="text-primary-400 hover:text-primary-300 font-semibold transition-colors text-sm"
@@ -313,21 +375,23 @@ export default function ContestDetailPage() {
               <thead>
                 <tr>
                   <th className="w-16 text-center">Puesto</th>
-                  <th>Competidor</th>
-                  <th>Equipo</th>
+                  <th>{contest.mode === 'team' ? 'Equipo / Miembros' : 'Competidor'}</th>
+                  {contest.mode !== 'team' && <th className="w-48">Equipo</th>}
                   <th className="w-24 text-center">Resueltos</th>
                   <th className="w-28 text-right">Penalización</th>
                 </tr>
               </thead>
               <tbody>
                 {ranking.map((r: any, idx: number) => {
-                  const isCurrentUser = r.username === user?.username;
+                  const isCurrentTeam = contest.mode === 'team' && r.members_breakdown?.some((m: any) => m.username === user?.username);
+                  const isCurrentUser = contest.mode !== 'team' && r.username === user?.username;
+                  const isHighlighted = isCurrentUser || isCurrentTeam;
                   const rankPos = r.rank_position || idx + 1;
                   return (
                     <tr
-                      key={r.id || r.username}
+                      key={r.id || r.username || r.team}
                       className={
-                        isCurrentUser
+                        isHighlighted
                           ? 'bg-primary-500/10 hover:bg-primary-500/15 border-l-2 border-primary-500'
                           : ''
                       }
@@ -336,12 +400,33 @@ export default function ContestDetailPage() {
                         {rankPos === 1 ? '🥇' : rankPos === 2 ? '🥈' : rankPos === 3 ? '🥉' : rankPos}
                       </td>
                       <td>
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-sm text-surface-100">{r.full_name || r.username}</span>
-                          <span className="text-xs text-surface-500 font-mono">@{r.username}</span>
+                        <div className="flex flex-col py-1">
+                          {contest.mode === 'team' ? (
+                            <>
+                              <span className="font-semibold text-sm text-surface-100 flex items-center gap-1.5">
+                                👥 {r.team_name || 'Equipo sin nombre'}
+                              </span>
+                              {r.members_breakdown && r.members_breakdown.length > 0 && (
+                                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-[11px] text-surface-400 font-mono bg-surface-900/40 p-2 rounded-lg border border-surface-850 max-w-lg">
+                                  {r.members_breakdown.map((m: any) => (
+                                    <span key={m.username} className="hover:text-primary-300 transition-colors">
+                                      {m.full_name || m.username}: <strong className="text-emerald-400 font-semibold">{m.solved_count} AC</strong>
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <span className="font-semibold text-sm text-surface-100">{r.full_name || r.username}</span>
+                              <span className="text-xs text-surface-500 font-mono">@{r.username}</span>
+                            </>
+                          )}
                         </div>
                       </td>
-                      <td className="text-surface-400 text-sm">{r.team_name || 'Individual'}</td>
+                      {contest.mode !== 'team' && (
+                        <td className="text-surface-400 text-sm">{r.team_name || 'Individual'}</td>
+                      )}
                       <td className="text-center">
                         <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono font-bold text-sm">
                           {r.solved_count}
@@ -362,6 +447,72 @@ export default function ContestDetailPage() {
                 )}
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {/* ─── MODAL: REGISTRAR EQUIPO ─────────────────── */}
+      {showRegisterTeamModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-surface-950 border border-surface-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative space-y-4">
+            <button
+              onClick={() => setShowRegisterTeamModal(false)}
+              className="absolute right-4 top-4 text-surface-400 hover:text-surface-200 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="border-b border-surface-850 pb-2">
+              <h3 className="text-lg font-display font-extrabold text-surface-100">
+                Registrar Equipo a la Competencia
+              </h3>
+              <p className="text-xs text-surface-400">Selecciona el equipo a inscribir en {contest.title}</p>
+            </div>
+
+            <form onSubmit={handleRegisterTeamSubmit} className="space-y-4">
+              <div className="space-y-1">
+                <label htmlFor="team-contest-select" className="text-xs text-surface-450 font-display font-semibold">Seleccionar Equipo</label>
+                <select
+                  id="team-contest-select"
+                  required
+                  className="input"
+                  value={selectedTeam}
+                  onChange={(e) => setSelectedTeam(e.target.value)}
+                >
+                  <option value="">Elige un equipo...</option>
+                  {filteredTeams.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name} ({t.member_count} miembros) {t.coach_name ? `— Coach: ${t.coach_name}` : ''}
+                    </option>
+                  ))}
+                </select>
+                {filteredTeams.length === 0 && (
+                  <p className="text-[10px] text-amber-400 mt-1">
+                    No tienes ningún equipo activo creado para registrar.
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={registeringTeam || !selectedTeam}
+                className="btn-primary w-full py-2.5 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/10"
+              >
+                {registeringTeam ? (
+                  <>
+                    <Spinner size="sm" className="border-white" />
+                    <span>Inscribiendo equipo...</span>
+                  </>
+                ) : (
+                  <>
+                    <IconUsers className="w-4 h-4" />
+                    <span>Confirmar Inscripción</span>
+                  </>
+                )}
+              </button>
+            </form>
           </div>
         </div>
       )}

@@ -51,3 +51,6 @@ temp_submissions/
 skills-lock.json
 manual_de_usuario.md
 estandar_de_desarrollo.md
+
+# Keys
+*.pem

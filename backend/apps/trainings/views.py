@@ -10,7 +10,7 @@ from .serializers import (
     TrainingListSerializer, TrainingDetailSerializer,
     TrainingCreateSerializer, TrainingProblemSerializer,
 )
-from apps.users.permissions import IsCoachOrAdmin
+from apps.users.permissions import IsCoach
 from apps.submissions.models import Submission
 
 
@@ -34,8 +34,8 @@ class TrainingViewSet(viewsets.ModelViewSet):
         return TrainingDetailSerializer
 
     def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [IsAuthenticated(), IsCoachOrAdmin()]
+        if self.action in ['create', 'update', 'partial_update', 'destroy', 'add_problem']:
+            return [IsAuthenticated(), IsCoach()]
         return [IsAuthenticated()]
 
     @action(detail=True, methods=['post'])

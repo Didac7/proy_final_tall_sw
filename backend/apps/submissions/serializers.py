@@ -59,3 +59,28 @@ class SubmissionCreateSerializer(serializers.ModelSerializer):
                 f'Lenguaje no soportado. Opciones: {", ".join(allowed)}'
             )
         return value
+
+    def validate(self, attrs):
+        contest = attrs.get('contest')
+        if contest:
+            user = self.context['request'].user
+            if not (user.is_admin or user.is_coach):
+                if contest.mode == 'team':
+                    from apps.teams.models import TeamMember
+                    from apps.contests.models import Ranking
+                    membership = TeamMember.objects.filter(user=user, team__is_active=True).first()
+                    if not membership:
+                        raise serializers.ValidationError(
+                            'Para enviar soluciones a esta competencia por equipos, debes pertenecer a un equipo activo.'
+                        )
+                    if not Ranking.objects.filter(contest=contest, team=membership.team).exists():
+                        raise serializers.ValidationError(
+                            f'Tu equipo "{membership.team.name}" no está registrado en esta competencia.'
+                        )
+                else:
+                    from apps.contests.models import ContestParticipant
+                    if not ContestParticipant.objects.filter(contest=contest, user=user).exists():
+                        raise serializers.ValidationError(
+                            'Debes estar registrado en esta competencia para poder enviar soluciones.'
+                        )
+        return attrs

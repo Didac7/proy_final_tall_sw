@@ -86,42 +86,63 @@ class SubmissionViewSet(viewsets.ModelViewSet):
     def _update_ranking(self, submission):
         """Actualizar ranking de la competencia tras un AC."""
         try:
-            ranking, _ = Ranking.objects.get_or_create(
-                contest=submission.contest,
-                user=submission.user,
-            )
+            user_team = None
+            if submission.contest.mode == 'team':
+                from apps.teams.models import TeamMember
+                membership = TeamMember.objects.filter(user=submission.user, team__is_active=True).first()
+                if membership:
+                    from apps.contests.models import Ranking
+                    if Ranking.objects.filter(contest=submission.contest, team=membership.team).exists():
+                        user_team = membership.team
+
+            if submission.contest.mode == 'team':
+                ranking, _ = Ranking.objects.get_or_create(
+                    contest=submission.contest,
+                    team=user_team,
+                    user=None
+                )
+                from apps.teams.models import TeamMember
+                members_ids = TeamMember.objects.filter(team=user_team).values_list('user_id', flat=True)
+                submissions_filter = {'user_id__in': list(members_ids)}
+            else:
+                ranking, _ = Ranking.objects.get_or_create(
+                    contest=submission.contest,
+                    user=submission.user,
+                    team=None
+                )
+                submissions_filter = {'user': submission.user}
 
             # Contar problemas únicos resueltos en esta competencia
             solved = Submission.objects.filter(
-                user=submission.user,
                 contest=submission.contest,
-                verdict='AC'
+                verdict='AC',
+                **submissions_filter
             ).values('problem').distinct().count()
 
             # Calcular penalización total (intentos fallidos * penalty_time)
             penalty = 0
             solved_problems = Submission.objects.filter(
-                user=submission.user,
                 contest=submission.contest,
-                verdict='AC'
+                verdict='AC',
+                **submissions_filter
             ).values_list('problem_id', flat=True).distinct()
 
             for problem_id in solved_problems:
                 # Contar intentos fallidos antes del primer AC
                 first_ac = Submission.objects.filter(
-                    user=submission.user,
                     contest=submission.contest,
                     problem_id=problem_id,
-                    verdict='AC'
+                    verdict='AC',
+                    **submissions_filter
                 ).order_by('submitted_at').first()
 
                 if first_ac:
                     failed_attempts = Submission.objects.filter(
-                        user=submission.user,
                         contest=submission.contest,
                         problem_id=problem_id,
                         submitted_at__lt=first_ac.submitted_at,
-                        verdict__in=['WA', 'TLE', 'RE']
+                        verdict__in=['WA', 'TLE', 'RE'],
+                        **submissions_filter
                     ).count()
 
                     penalty += failed_attempts * submission.contest.penalty_time

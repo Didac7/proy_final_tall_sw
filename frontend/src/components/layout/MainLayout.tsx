@@ -55,13 +55,21 @@ export default function MainLayout() {
   const isCoach = (user as any)?.role === 'coach' || user?.role_name === 'coach';
   const userInitials = `${(user?.first_name?.[0] || '').toUpperCase()}${(user?.last_name?.[0] || '').toUpperCase()}` || 'U';
 
-  const renderNav = (collapsed: boolean) => (
-    <>
-      <p className={`text-[10px] uppercase tracking-widest text-surface-500 font-display font-semibold mb-3 ${collapsed ? 'text-center' : 'px-3'}`}>
-        {collapsed ? '·' : 'Principal'}
-      </p>
-      {navigation.map((item) => {
-        const Icon = item.icon;
+  const renderNav = (collapsed: boolean) => {
+    const visibleNavigation = navigation.filter((item) => {
+      if (item.name === 'Problemas') {
+        return isAdmin || isCoach;
+      }
+      return true;
+    });
+
+    return (
+      <>
+        <p className={`text-[10px] uppercase tracking-widest text-surface-500 font-display font-semibold mb-3 ${collapsed ? 'text-center' : 'px-3'}`}>
+          {collapsed ? '·' : 'Principal'}
+        </p>
+        {visibleNavigation.map((item) => {
+          const Icon = item.icon;
         return (
           <NavLink
             key={item.path}
@@ -114,6 +122,7 @@ export default function MainLayout() {
       )}
     </>
   );
+};
 
   const sidebarContent = (collapsed: boolean) => (
     <>

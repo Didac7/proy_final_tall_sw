@@ -47,6 +47,12 @@ class Contest(models.Model):
         default='icpc',
         verbose_name='Tipo de puntuación'
     )
+    mode = models.CharField(
+        max_length=20,
+        choices=[('individual', 'Individual'), ('team', 'Por Equipos')],
+        default='individual',
+        verbose_name='Modalidad'
+    )
     penalty_time = models.IntegerField(
         default=20,
         verbose_name='Penalización por intento fallido (min)'
@@ -140,6 +146,8 @@ class Ranking(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         related_name='rankings',
         verbose_name='Usuario'
     )
@@ -165,7 +173,6 @@ class Ranking(models.Model):
         db_table = 'rankings'
         verbose_name = 'Ranking'
         verbose_name_plural = 'Rankings'
-        unique_together = ('contest', 'user')
         ordering = ['-solved_count', 'total_penalty']
 
     def __str__(self):
